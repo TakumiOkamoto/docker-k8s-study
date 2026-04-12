@@ -102,3 +102,11 @@ git remote add origin git@github.com:<your-account>/docker-k8s-study.git
 git branch -M main
 git push -u origin main
 ```
+
+# User input
+  - Opened Docker Desktop
+  - Verified `docker info`
+  - Ran `docker run hello-world`
+  - Confirmed Docker is working
+  - Verified `kubectl` is installed
+  - Verified `kind` is installed
