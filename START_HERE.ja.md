@@ -11,7 +11,7 @@
 ## AI が最初にやること
 
 1. `START_HERE.ja.md` を読む
-2. `/Users/tapacchi/Develop/AI_REPO_POLICY_TEMPLATE.ja.md` と `/Users/tapacchi/Develop/AI_REPO_POLICY_TEMPLATE.md` を読む
+2. `/Users/tapacchi/.config/ai-policy/AI_REPO_POLICY_TEMPLATE.ja.md` と `/Users/tapacchi/.config/ai-policy/AI_REPO_POLICY_TEMPLATE.md` を読む
 3. `HANDOFF.ja.md` を読む
 4. `STATUS.ja.md` を読む
 5. `README.ja.md` と `AGENTS.md` を読む
