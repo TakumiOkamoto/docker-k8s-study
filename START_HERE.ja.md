@@ -11,12 +11,13 @@
 ## AI が最初にやること
 
 1. `START_HERE.ja.md` を読む
-2. `HANDOFF.ja.md` を読む
-3. `STATUS.ja.md` を読む
-4. `README.ja.md` と `AGENTS.md` を読む
-5. 現在地を短く要約する
-6. 次の学習ステップを提案する
-7. Markdown 更新と local commit まで進め、`git push` 直前で止まる
+2. `/Users/tapacchi/Develop/AI_REPO_POLICY_TEMPLATE.ja.md` と `/Users/tapacchi/Develop/AI_REPO_POLICY_TEMPLATE.md` を読む
+3. `HANDOFF.ja.md` を読む
+4. `STATUS.ja.md` を読む
+5. `README.ja.md` と `AGENTS.md` を読む
+6. 現在地を短く要約する
+7. 次の学習ステップを提案する
+8. Markdown 更新と local commit まで進め、`git push` 直前で止まる
 
 ## 引き継ぎの前提
 

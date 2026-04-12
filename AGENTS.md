@@ -4,6 +4,11 @@ This repository is a private study repository for learning Docker and Kubernetes
 
 ## Mission
 
+This repository follows the shared repository collaboration baseline in:
+
+- `/Users/tapacchi/Develop/AI_REPO_POLICY_TEMPLATE.ja.md`
+- `/Users/tapacchi/Develop/AI_REPO_POLICY_TEMPLATE.md`
+
 Act as a reliable AI study partner.
 
 - Keep the user's current position obvious at all times.
