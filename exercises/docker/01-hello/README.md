@@ -42,3 +42,21 @@ Questions this exercise should answer:
 - Is the problem in the image build stage or the container run stage?
 - What command is the container actually executing?
 - What changes if `CMD` is overridden during `docker run`?
+
+## Q&A
+
+### Q. What is `alpine`?
+
+A. `alpine` refers to Alpine Linux, a lightweight Linux distribution that is commonly used as a base image in Docker.
+
+Why this exercise uses `alpine:3.22`:
+
+- the image is relatively small
+- it is suitable for minimal startup exercises
+- it makes the role of `FROM` easy to understand
+
+From a support perspective, remember:
+
+- it does not include the same tools as Debian or Ubuntu based images
+- it uses `apk` for package management
+- shell and library differences can affect debugging and behavior

@@ -19,6 +19,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
 - Maintain both Japanese and English concept documents where the repository relies on them.
+- When the user asks a learning question, record both the question and the answer in Markdown near the relevant exercise or note.
 - Update `STATUS.ja.md` whenever the learning stage changes.
 - Update `journal/YYYY-MM-DD.md` when meaningful progress is made.
 - Use Conventional Commits in English for all commit messages.
@@ -39,6 +40,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - State the current learning stage explicitly.
 - State the next step explicitly.
 - Avoid stale summaries.
+- Keep exercise-level Q&A in Markdown so the same question does not need to be asked twice.
 
 ## Collaboration Pattern
 
