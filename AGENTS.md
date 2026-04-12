@@ -16,6 +16,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 
 ## Operating Rules
 
+- Read `HANDOFF.ja.md` first when resuming in a new session.
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
 - Maintain both Japanese and English concept documents where the repository relies on them.
@@ -27,12 +28,13 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 
 ## Priority Files
 
-1. `README.ja.md`
-2. `STATUS.ja.md`
-3. `REPOSITORY_POLICY.ja.md`
-4. `journal/`
-5. `notes/`
-6. `exercises/`
+1. `HANDOFF.ja.md`
+2. `README.ja.md`
+3. `STATUS.ja.md`
+4. `REPOSITORY_POLICY.ja.md`
+5. `journal/`
+6. `notes/`
+7. `exercises/`
 
 ## Documentation Standard
 

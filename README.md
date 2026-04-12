@@ -13,6 +13,7 @@ This repository is not only for "running commands that work". It is for understa
 
 - Current stage: `STATUS.ja.md`
 - Japanese overview: `README.ja.md`
+- Handoff summary: `HANDOFF.ja.md`
 - Repository policy: `REPOSITORY_POLICY.ja.md`
 - AI collaborator instructions: `AGENTS.md`
 
