@@ -11,6 +11,7 @@ This repository is not only for "running commands that work". It is for understa
 
 ## Start Here
 
+- Minimal session entry: `START_HERE.ja.md`
 - Current stage: `STATUS.ja.md`
 - Japanese overview: `README.ja.md`
 - Handoff summary: `HANDOFF.ja.md`

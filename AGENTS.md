@@ -16,6 +16,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 
 ## Operating Rules
 
+- Accept `START_HERE.ja.md` as the minimal handoff entrypoint for a new session.
 - Read `HANDOFF.ja.md` first when resuming in a new session.
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
