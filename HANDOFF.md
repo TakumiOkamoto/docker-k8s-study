@@ -60,3 +60,4 @@ The next step is `exercises/docker/02-nginx`. The focus is:
 8. `COLLABORATION_GUIDE.ja.md` and `COLLABORATION_GUIDE.md`
 9. `ASKING_GUIDE.ja.md` and `ASKING_GUIDE.md`
 10. `ENGINEER_GROWTH.ja.md` and `ENGINEER_GROWTH.md`
+11. `CONVERSATION_HISTORY.ja.md` and `CONVERSATION_HISTORY.md`

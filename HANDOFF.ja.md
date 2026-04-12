@@ -60,6 +60,7 @@
 8. `COLLABORATION_GUIDE.ja.md`
 9. `ASKING_GUIDE.ja.md`
 10. `ENGINEER_GROWTH.ja.md`
+11. `CONVERSATION_HISTORY.ja.md`
 
 ## AI への注意
 

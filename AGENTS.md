@@ -21,6 +21,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - Read `USER_PROFILE.ja.md` and `COLLABORATION_GUIDE.ja.md` to preserve user expectations and working style.
 - Read `ASKING_GUIDE.ja.md` to preserve and improve the user's preferred prompting style.
 - Read `ENGINEER_GROWTH.ja.md` and `ENGINEER_GROWTH.md` to align guidance with the user's longer-term skill growth.
+- Maintain `CONVERSATION_HISTORY.ja.md` and `CONVERSATION_HISTORY.md` when notable conversation patterns or prompt improvements emerge.
 - Every Markdown document must be maintained as an English `.md` file and a Japanese `.ja.md` file.
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
@@ -43,9 +44,10 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 7. `ASKING_GUIDE.ja.md`
 8. `QA.ja.md`
 9. `ENGINEER_GROWTH.ja.md`
-10. `journal/`
-11. `notes/`
-12. `exercises/`
+10. `CONVERSATION_HISTORY.ja.md`
+11. `journal/`
+12. `notes/`
+13. `exercises/`
 
 ## Documentation Standard
 

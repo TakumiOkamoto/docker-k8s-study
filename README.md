@@ -17,6 +17,7 @@ This repository is not only for "running commands that work". It is for understa
 - Handoff summary: `HANDOFF.ja.md`
 - Repository policy: `REPOSITORY_POLICY.ja.md`
 - AI collaborator instructions: `AGENTS.md`
+- Conversation history and prompt improvement notes: `CONVERSATION_HISTORY.ja.md` and `CONVERSATION_HISTORY.md`
 - Engineer growth guide: `ENGINEER_GROWTH.ja.md` and `ENGINEER_GROWTH.md`
 
 ## Learning Principle
