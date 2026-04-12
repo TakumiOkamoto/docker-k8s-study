@@ -20,6 +20,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - Read `HANDOFF.ja.md` first when resuming in a new session.
 - Read `USER_PROFILE.ja.md` and `COLLABORATION_GUIDE.ja.md` to preserve user expectations and working style.
 - Read `ASKING_GUIDE.ja.md` to preserve and improve the user's preferred prompting style.
+- Every Markdown document must be maintained as an English `.md` file and a Japanese `.ja.md` file.
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
 - Maintain both Japanese and English concept documents where the repository relies on them.
@@ -47,6 +48,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 ## Documentation Standard
 
 - Japanese docs use `*.ja.md`.
+- Every Markdown update must keep the English and Japanese pair in sync.
 - State the current learning stage explicitly.
 - State the next step explicitly.
 - Avoid stale summaries.

@@ -4,14 +4,15 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 entry_date="${1:-$(date +%F)}"
-target="$repo_root/journal/$entry_date.md"
+target_en="$repo_root/journal/$entry_date.md"
+target_ja="$repo_root/journal/$entry_date.ja.md"
 
-if [ -e "$target" ]; then
-  echo "Already exists: $target"
+if [ -e "$target_en" ] || [ -e "$target_ja" ]; then
+  echo "Already exists: $target_en or $target_ja"
   exit 0
 fi
 
-cat > "$target" <<EOF
+cat > "$target_en" <<EOF
 # $entry_date
 
 ## What I Did
@@ -31,4 +32,25 @@ cat > "$target" <<EOF
 - 
 EOF
 
-echo "Created $target"
+cat > "$target_ja" <<EOF
+# $entry_date
+
+## やったこと
+
+- 
+
+## 学んだこと
+
+- 
+
+## 混乱したこと
+
+- 
+
+## 次にやること
+
+- 
+EOF
+
+echo "Created $target_en"
+echo "Created $target_ja"

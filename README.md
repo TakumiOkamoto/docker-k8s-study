@@ -53,3 +53,10 @@ Examples:
 - `docs: explain deployment selectors and service routing`
 - `feat: add compose troubleshooting example`
 - `fix: correct Docker bind mount note`
+
+## Documentation Rule
+
+Every Markdown document must exist as a pair:
+
+- English: `.md`
+- Japanese: `.ja.md`

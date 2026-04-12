@@ -25,6 +25,7 @@
 - 進捗、Q&A、handoff を Markdown に残す
 - 質問が出たら関連する Markdown に Q&A を追記する
 - commit message は Conventional Commits に従い、英語で書く
+- すべての Markdown 文書は `.md` と `.ja.md` を両方更新する
 
 ## 次に見るファイル
 

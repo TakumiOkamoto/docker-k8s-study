@@ -11,10 +11,10 @@
 
 ## ドキュメント運用
 
-- 日本語文書は `*.ja.md` とする
+- すべての Markdown 文書は、英語版 `.md` と日本語版 `.ja.md` を必ず対で持つ
 - 主要な概念説明は英語版と日本語版の両方を持つ
 - 現在地の要約は `STATUS.ja.md` に置く
-- 日々の詳細は `journal/YYYY-MM-DD.md` に置く
+- 日々の詳細は `journal/YYYY-MM-DD.md` と `journal/YYYY-MM-DD.ja.md` に置く
 - トピック別メモは `notes/` に置く
 - 実行可能な最小サンプルは `exercises/` に置く
 - 設定ファイルや manifest の意味を Markdown で説明する

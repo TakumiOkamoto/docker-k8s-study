@@ -22,6 +22,7 @@
 ## 重要な運用ルール
 
 - 日本語文書は `*.ja.md`
+- すべての Markdown 文書は `.md` と `.ja.md` の両方を持つ
 - 主要な説明は日本語と英語の両方で整備する
 - 利用者から学習上の質問が出たら、関連する Markdown に Q&A として追記する
 - commit message は Conventional Commits に従い、英語で書く
