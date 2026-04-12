@@ -11,7 +11,7 @@ Please resume from ~/Develop/docker-k8s-study/START_HERE.ja.md and START_HERE.md
 ## What The AI Should Do First
 
 1. Read `START_HERE.ja.md` and `START_HERE.md`
-2. Read `/Users/tapacchi/.config/ai-policy/AI_REPO_POLICY_TEMPLATE.ja.md` and `/Users/tapacchi/.config/ai-policy/AI_REPO_POLICY_TEMPLATE.md`
+2. Read `/Users/tapacchi/dotfiles/ai/policy/AI_REPO_POLICY_TEMPLATE.ja.md` and `/Users/tapacchi/dotfiles/ai/policy/AI_REPO_POLICY_TEMPLATE.md`
 3. Read `HANDOFF.ja.md` and `HANDOFF.md`
 4. Read `STATUS.ja.md` and `STATUS.md`
 5. Read `README.ja.md`, `README.md`, and `AGENTS.md`

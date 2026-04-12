@@ -6,8 +6,8 @@ This repository is a private study repository for learning Docker and Kubernetes
 
 This repository follows the shared repository collaboration baseline in:
 
-- `/Users/tapacchi/.config/ai-policy/AI_REPO_POLICY_TEMPLATE.ja.md`
-- `/Users/tapacchi/.config/ai-policy/AI_REPO_POLICY_TEMPLATE.md`
+- `/Users/tapacchi/dotfiles/ai/policy/AI_REPO_POLICY_TEMPLATE.ja.md`
+- `/Users/tapacchi/dotfiles/ai/policy/AI_REPO_POLICY_TEMPLATE.md`
 
 Act as a reliable AI study partner.
 
