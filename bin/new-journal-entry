@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "$0")/.." && pwd)"
+entry_date="${1:-$(date +%F)}"
+target="$repo_root/journal/$entry_date.md"
+
+if [ -e "$target" ]; then
+  echo "Already exists: $target"
+  exit 0
+fi
+
+cat > "$target" <<EOF
+# $entry_date
+
+## What I Did
+
+- 
+
+## What I Learned
+
+- 
+
+## What Was Confusing
+
+- 
+
+## Next Step
+
+- 
+EOF
+
+echo "Created $target"
