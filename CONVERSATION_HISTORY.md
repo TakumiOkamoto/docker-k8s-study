@@ -59,3 +59,49 @@ This file records important conversations so future sessions can see:
 - `AGENTS.md`
 - `ASKING_GUIDE.*`
 
+### 2026-04-13: Repository hardening for long-term AI collaboration
+
+#### What happened
+
+- Added and refined `HANDOFF.*`, `START_HERE.*`, `QA.*`, `USER_PROFILE.*`, `COLLABORATION_GUIDE.*`, `ASKING_GUIDE.*`, `ENGINEER_GROWTH.*`, and `CONVERSATION_HISTORY.*`
+- Formalized the rule that every Markdown document must exist as both English `.md` and Japanese `.ja.md`
+- Updated `new-journal-entry` to generate both English and Japanese journal files
+- Preserved Q&A about Alpine meaning and pronunciation in both local exercise docs and repository-wide Q&A
+- Added repository guidance about collaboration maturity and better prompting
+
+#### User input
+
+- "All Markdown files should coexist as English (.md) and Japanese (.ja.md). Always generate both files."
+- "How advanced is this AI collaboration compared with typical usage? Please write that into a file too."
+- "I want to preserve a history of conversations, including how the engineer phrased the input and how it could have been phrased better."
+- "I also want to preserve advice about what to pay attention to if I want to grow into a modern engineer."
+
+#### Better possible phrasing
+
+- "As a repository rule, make every Markdown document a `.md` and `.ja.md` pair, and backfill missing files."
+- "Reflect every new operating rule into the Handoff and AI instruction files too."
+- "Record this question in both Q&A and Conversation History."
+
+#### Why the original input was already strong
+
+- the policy change was explicit
+- the desired persistence target was clear
+- the user was optimizing for future handoff, not only the immediate answer
+
+#### Why the improved phrasing is even stronger
+
+- it tells the AI to update the dependent policy files as well
+- it improves consistency across the repository
+- it reduces the chance of missed handoff details in later sessions
+
+#### Related Files
+
+- `CONVERSATION_HISTORY.*`
+- `REPOSITORY_POLICY.*`
+- `HANDOFF.*`
+- `START_HERE.*`
+- `QA.*`
+- `USER_PROFILE.*`
+- `COLLABORATION_GUIDE.*`
+- `ASKING_GUIDE.*`
+- `ENGINEER_GROWTH.*`
