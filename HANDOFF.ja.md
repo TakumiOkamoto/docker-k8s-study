@@ -57,6 +57,7 @@
 6. `QA.ja.md`
 7. `USER_PROFILE.ja.md`
 8. `COLLABORATION_GUIDE.ja.md`
+9. `ASKING_GUIDE.ja.md`
 
 ## AI への注意
 

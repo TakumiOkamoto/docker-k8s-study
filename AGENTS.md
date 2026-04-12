@@ -19,6 +19,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - Accept `START_HERE.ja.md` as the minimal handoff entrypoint for a new session.
 - Read `HANDOFF.ja.md` first when resuming in a new session.
 - Read `USER_PROFILE.ja.md` and `COLLABORATION_GUIDE.ja.md` to preserve user expectations and working style.
+- Read `ASKING_GUIDE.ja.md` to preserve and improve the user's preferred prompting style.
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
 - Maintain both Japanese and English concept documents where the repository relies on them.
@@ -37,10 +38,11 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 4. `REPOSITORY_POLICY.ja.md`
 5. `USER_PROFILE.ja.md`
 6. `COLLABORATION_GUIDE.ja.md`
-7. `QA.ja.md`
-8. `journal/`
-9. `notes/`
-10. `exercises/`
+7. `ASKING_GUIDE.ja.md`
+8. `QA.ja.md`
+9. `journal/`
+10. `notes/`
+11. `exercises/`
 
 ## Documentation Standard
 
