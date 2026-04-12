@@ -1,5 +1,9 @@
 # 現在の進捗
 
+## 現在地
+
+Docker の初期セットアップは完了。最初の Dockerfile 演習も完了。次は `nginx` を使って、ポート公開と bind mount を体験する段階。
+
 ## 完了したこと
 
 - Docker + Kubernetes 学習用の private repository を作成
@@ -27,6 +31,12 @@
 2. ポート公開と bind mount を理解する
 3. `kind` で最初のローカルクラスタを作る
 4. Kubernetes の Deployment と Service を apply する
+
+## 今の理解ポイント
+
+- Docker Engine は Docker Desktop 起動後に利用できる
+- `docker build` でイメージを作り、`docker run` でコンテナを実行する
+- `kubectl` と `kind` はすでに利用可能
 
 ## 直近の学習テーマ
 

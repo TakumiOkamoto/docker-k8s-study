@@ -2,17 +2,26 @@
 
 Docker と Kubernetes を学ぶための個人用 private repository。日々の学習メモ、短い演習、再実行しやすいコマンドをここに集約する。
 
+## 最初に見る場所
+
+- 現在地の要約: `STATUS.ja.md`
+- 運用ルール: `REPOSITORY_POLICY.ja.md`
+- AI 向け指示書: `AGENTS.md`
+- 直近の日報: `journal/2026-04-12.md`
+
 ## ドキュメント方針
 
 - 日本語の文書は `*.ja.md` を使う
 - 日々の進捗は `journal/` に残す
 - 実験用の最小コードは `exercises/` に置く
 - 現在の到達点は `STATUS.ja.md` に要約する
+- commit message は Conventional Commits に従う
 
 ## 現在の進捗
 
 - 進捗サマリ: `STATUS.ja.md`
 - 直近の日報: `journal/2026-04-12.md`
+- 現在の次アクション: `STATUS.ja.md` の「次にやること」
 
 ## ゴール
 
@@ -98,12 +107,20 @@ kind version
 2. `journal/YYYY-MM-DD.md` に学んだことを書く
 3. 小さく commit する
 
-## commit 例
+## commit ルール
 
 ```bash
 git add .
-git commit -m "study: Docker hello-world and notes"
+git commit -m "docs: update study progress"
 ```
+
+Conventional Commits の型:
+
+- `docs:` ドキュメント更新
+- `feat:` 新しい学習用機能や補助スクリプト追加
+- `fix:` 誤り修正
+- `chore:` 雑務や初期整備
+- `refactor:` 構造整理
 
 ## GitHub へ push
 
@@ -114,11 +131,3 @@ git remote add origin git@github.com:<your-account>/docker-k8s-study.git
 git branch -M main
 git push -u origin main
 ```
-
-# User input
-  - Opened Docker Desktop
-  - Verified `docker info`
-  - Ran `docker run hello-world`
-  - Confirmed Docker is working
-  - Verified `kubectl` is installed
-  - Verified `kind` is installed
