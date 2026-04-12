@@ -1,13 +1,24 @@
-# Docker + Kubernetes Study Repo
+# Docker + Kubernetes Support Study Repo
 
-Docker と Kubernetes を学ぶための個人用 private repository。日々の学習メモ、短い演習、再実行しやすいコマンドをここに集約する。
+Docker と Kubernetes を、将来サポートする立場のエンジニアとして学ぶための個人用 private repository。単にコマンドをなぞるのではなく、構造、設定、責務分担、トラブル時の見方まで理解することを目的にする。
 
 ## 最初に見る場所
 
 - 現在地の要約: `STATUS.ja.md`
+- 英語の入口: `README.md`
 - 運用ルール: `REPOSITORY_POLICY.ja.md`
 - AI 向け指示書: `AGENTS.md`
 - 直近の日報: `journal/2026-04-12.md`
+
+## この repository の学習姿勢
+
+各演習では、必ず次の観点を残す。
+
+1. これは何の役割を持つか
+2. どこで動いているか
+3. どの設定ファイルがそれを制御しているか
+4. どう確認するか
+5. どこが壊れやすいか
 
 ## ドキュメント方針
 
@@ -25,19 +36,20 @@ Docker と Kubernetes を学ぶための個人用 private repository。日々の
 
 ## ゴール
 
-この順で手を動かして理解する。
+この順で、運用やサポートに必要な理解まで含めて身につける。
 
 1. Docker 基礎
 2. Docker Compose
 3. Kubernetes 基礎
 4. ローカルクラスタ運用
+5. トラブル時の切り分け
 
 ## リポジトリ構成
 
 - `journal/`: 日々の進捗ログ
-- `notes/`: トピック別メモとチェックリスト
-- `exercises/docker/`: Docker 演習
-- `exercises/k8s/`: Kubernetes 演習
+- `notes/`: トピック別メモとチェックリスト。日本語と英語の両方を置く
+- `exercises/docker/`: Docker 演習。設定ファイルの意味も説明する
+- `exercises/k8s/`: Kubernetes 演習。Manifest の各項目の意味も説明する
 - `bin/`: 補助スクリプト
 
 ## 最初の 1 週間
@@ -104,8 +116,15 @@ kind version
 ## 日次運用
 
 1. 1つ演習するか、1つノートを読む
-2. `journal/YYYY-MM-DD.md` に学んだことを書く
+2. `journal/YYYY-MM-DD.md` に、作業結果だけでなく「構造」と「設定の意味」を書く
 3. 小さく commit する
+
+## 文書ルール
+
+- 日本語文書は `*.ja.md`
+- 主要な概念説明は日本語と英語の両方で残す
+- 演習 README には必ず「この設定が何を意味するか」を書く
+- 進捗だけでなく、サポート観点のメモを残す
 
 ## commit ルール
 

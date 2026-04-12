@@ -1,112 +1,53 @@
-# Docker + Kubernetes Study Repo
+# Docker + Kubernetes Support Study Repo
 
-Private study repository for learning Docker and Kubernetes with daily notes, small exercises, and repeatable commands.
+Private study repository for learning Docker and Kubernetes from a support-engineer perspective.
 
-## Goal
+This repository is not only for "running commands that work". It is for understanding:
 
-Build hands-on understanding in this order:
+- how the system is structured
+- what each configuration file means
+- what symptoms map to which layer
+- how to inspect and explain behavior when something breaks
 
-1. Docker basics
-2. Docker Compose
-3. Kubernetes basics
-4. Local cluster workflows
+## Start Here
 
-## Repo Layout
+- Current stage: `STATUS.ja.md`
+- Japanese overview: `README.ja.md`
+- Repository policy: `REPOSITORY_POLICY.ja.md`
+- AI collaborator instructions: `AGENTS.md`
+
+## Learning Principle
+
+Every exercise should answer these questions:
+
+1. What is this component?
+2. Where does it run?
+3. Which configuration controls it?
+4. How do I verify it?
+5. What usually breaks here?
+
+## Repository Layout
 
 - `journal/`: daily progress logs
-- `notes/`: topic notes and checklists
-- `exercises/docker/`: Docker exercises
-- `exercises/k8s/`: Kubernetes exercises
+- `notes/`: conceptual notes in English and Japanese
+- `exercises/`: small reproducible exercises
 - `bin/`: helper scripts
 
-## First Week
+## Current Focus
 
-### Day 1
+The current stage is:
 
-- Install Docker Desktop
-- Run `docker run hello-world`
-- Read `notes/00-setup.md`
-- Write one entry in `journal/2026-04-12.md`
+1. Docker Desktop is working
+2. Basic Docker image build is confirmed
+3. Next step is nginx with port publishing and bind mounts
+4. Then move to a local Kubernetes cluster with `kind`
 
-### Day 2
+## Commit Policy
 
-- Build the sample app in `exercises/docker/01-hello`
-- Learn `docker build`, `docker run`, `docker logs`
+Use Conventional Commits in English.
 
-### Day 3
+Examples:
 
-- Run the nginx exercise in `exercises/docker/02-nginx`
-- Learn port mapping and bind mounts
-
-### Day 4
-
-- Learn `docker compose`
-- Add your own compose example
-
-### Day 5
-
-- Install `kubectl` and `kind`
-- Read `notes/10-k8s-basics.md`
-
-### Day 6
-
-- Create a local cluster
-- Apply `exercises/k8s/01-deployment/deployment.yaml`
-
-### Day 7
-
-- Review what was unclear
-- Write a short weekly summary in `journal/`
-
-## Commands
-
-### Start here
-
-```bash
-cd ~/Develop/docker-k8s-study
-```
-
-### Docker check
-
-```bash
-docker --version
-docker run hello-world
-```
-
-### Kubernetes check
-
-```bash
-kubectl version --client
-kind version
-```
-
-## Daily Workflow
-
-1. Do one exercise or read one note.
-2. Write what you learned in `journal/YYYY-MM-DD.md`.
-3. Commit with a small message.
-
-## Suggested Commit Style
-
-```bash
-git add .
-git commit -m "study: Docker hello-world and notes"
-```
-
-## Push To GitHub
-
-After creating a private GitHub repository:
-
-```bash
-git remote add origin git@github.com:<your-account>/docker-k8s-study.git
-git branch -M main
-git push -u origin main
-```
-
-# User input
-  - Opened Docker Desktop
-  - Verified `docker info`
-  - Ran `docker run hello-world`
-  - Confirmed Docker is working
-  - Verified `kubectl` is installed
-  - Verified `kind` is installed
+- `docs: explain deployment selectors and service routing`
+- `feat: add compose troubleshooting example`
+- `fix: correct Docker bind mount note`

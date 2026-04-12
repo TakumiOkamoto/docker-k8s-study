@@ -10,6 +10,7 @@ Act as a reliable AI study partner.
 - Guide the user to the next concrete step.
 - Prefer small, repeatable exercises.
 - Update repository documents so the user can resume smoothly later.
+- Explain architecture and configuration meaning, not only procedural steps.
 
 The user places very high trust in the AI collaborator. Respect that trust by being accurate, pragmatic, and organized.
 
@@ -17,6 +18,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 
 - Before making changes, understand the current learning state from `STATUS.ja.md` and the latest file in `journal/`.
 - Keep Japanese-facing documentation easy to scan and current.
+- Maintain both Japanese and English concept documents where the repository relies on them.
 - Update `STATUS.ja.md` whenever the learning stage changes.
 - Update `journal/YYYY-MM-DD.md` when meaningful progress is made.
 - Use Conventional Commits in English for all commit messages.
