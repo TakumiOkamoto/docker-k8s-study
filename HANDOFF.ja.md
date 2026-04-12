@@ -54,6 +54,7 @@
 3. `REPOSITORY_POLICY.ja.md`
 4. `AGENTS.md`
 5. 最新の `journal/`
+6. `QA.ja.md`
 
 ## AI への注意
 

@@ -22,6 +22,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - Keep Japanese-facing documentation easy to scan and current.
 - Maintain both Japanese and English concept documents where the repository relies on them.
 - When the user asks a learning question, record both the question and the answer in Markdown near the relevant exercise or note.
+- Also add a short index entry to `QA.ja.md` so repository-wide questions can be reviewed from one place.
 - Update `STATUS.ja.md` whenever the learning stage changes.
 - Update `journal/YYYY-MM-DD.md` when meaningful progress is made.
 - Use Conventional Commits in English for all commit messages.
@@ -33,9 +34,10 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 2. `README.ja.md`
 3. `STATUS.ja.md`
 4. `REPOSITORY_POLICY.ja.md`
-5. `journal/`
-6. `notes/`
-7. `exercises/`
+5. `QA.ja.md`
+6. `journal/`
+7. `notes/`
+8. `exercises/`
 
 ## Documentation Standard
 
