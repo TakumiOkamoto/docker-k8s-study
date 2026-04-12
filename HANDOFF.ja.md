@@ -59,6 +59,7 @@
 7. `USER_PROFILE.ja.md`
 8. `COLLABORATION_GUIDE.ja.md`
 9. `ASKING_GUIDE.ja.md`
+10. `ENGINEER_GROWTH.ja.md`
 
 ## AI への注意
 

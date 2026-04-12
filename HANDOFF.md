@@ -59,3 +59,4 @@ The next step is `exercises/docker/02-nginx`. The focus is:
 7. `USER_PROFILE.ja.md` and `USER_PROFILE.md`
 8. `COLLABORATION_GUIDE.ja.md` and `COLLABORATION_GUIDE.md`
 9. `ASKING_GUIDE.ja.md` and `ASKING_GUIDE.md`
+10. `ENGINEER_GROWTH.ja.md` and `ENGINEER_GROWTH.md`
