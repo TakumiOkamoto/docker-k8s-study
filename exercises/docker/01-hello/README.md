@@ -60,3 +60,13 @@ From a support perspective, remember:
 - it does not include the same tools as Debian or Ubuntu based images
 - it uses `apk` for package management
 - shell and library differences can affect debugging and behavior
+
+### Q. How should `alpine` be pronounced in Japanese?
+
+A. In Japanese conversation, `Arupain` (`アルパイン`) is the natural pronunciation and will be understood in Docker discussions.
+
+Notes:
+
+- using a close English-style pronunciation is enough
+- `Alpine Linux` is commonly said as `アルパイン Linux`
+- it is not usually pronounced like `アルピネ`
