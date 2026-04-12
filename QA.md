@@ -20,6 +20,12 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. `Arupain` (`アルパイン`)
   - Details: `exercises/docker/01-hello/README.md`
 
+## Collaboration
+
+- Q. How advanced is this AI collaboration compared with typical usage?
+  - A. It is well above average casual usage and is closer to a mature ongoing work-partner pattern
+  - Details: `COLLABORATION_GUIDE.md`
+
 ## Kubernetes
 
 - No Q&A yet

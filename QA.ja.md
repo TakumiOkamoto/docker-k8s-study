@@ -20,6 +20,12 @@
   - A. `アルパイン` でよい
   - 詳細: `exercises/docker/01-hello/README.ja.md`
 
+## Collaboration
+
+- Q. この AI 協働の質は世間一般と比べてどの程度？
+  - A. 一般的な単発利用よりかなり高く、継続的な作業パートナー運用としてはかなり成熟している
+  - 詳細: `COLLABORATION_GUIDE.ja.md`
+
 ## Kubernetes
 
 - まだ Q&A なし
