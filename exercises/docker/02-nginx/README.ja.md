@@ -501,3 +501,54 @@ docker rm <container-id>
 ```
 
 複数あるなら、対象を確認したうえでまとめて削除してもよい。
+
+### Q. 停止済みの `hello-world` container を実際に消すには？
+
+A. いちばん安全なのは、まず一覧を見てから `docker rm` で消すやり方。
+
+確認:
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+```
+
+この Mac では今、次の 3 つが残っている。
+
+- `70b6ede64a52`
+- `2ab3e021c407`
+- `537bd7d759a7`
+
+1 個ずつ消すなら:
+
+```bash
+docker rm 70b6ede64a52
+docker rm 2ab3e021c407
+docker rm 537bd7d759a7
+```
+
+まとめて消すなら:
+
+```bash
+docker rm $(docker ps -aq --filter ancestor=hello-world:latest)
+```
+
+削除後に確認:
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+docker images
+```
+
+学習上のポイント:
+
+- `docker rm`
+  - container を消す
+- `docker rmi`
+  - image を消す
+
+まずは container を消して、`hello-world` の `In Use` 表示がどう変わるかを見るのがよい。
+
+注意:
+
+- `docker rm` は停止済み container に使う
+- 起動中なら先に `docker stop <name-or-id>` が必要

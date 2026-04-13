@@ -74,6 +74,10 @@
   - A. 必ずしも違う。起動中 container だけでなく、停止済み container が image を参照していても `In Use` になる
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. 停止済みの `hello-world` container を消すには？
+  - A. `docker ps -a --filter ancestor=hello-world:latest` で確認してから、`docker rm <container-id>` か `docker rm $(docker ps -aq --filter ancestor=hello-world:latest)` を使う
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

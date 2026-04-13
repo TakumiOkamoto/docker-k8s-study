@@ -499,3 +499,54 @@ docker rm <container-id>
 ```
 
 If there are several, you can remove them after confirming the targets.
+
+### Q. How do I actually remove the stopped `hello-world` containers?
+
+A. The safest way is to list them first and then remove them with `docker rm`.
+
+Check first:
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+```
+
+On this Mac, the current stopped containers are:
+
+- `70b6ede64a52`
+- `2ab3e021c407`
+- `537bd7d759a7`
+
+To remove them one by one:
+
+```bash
+docker rm 70b6ede64a52
+docker rm 2ab3e021c407
+docker rm 537bd7d759a7
+```
+
+To remove all matching stopped containers at once:
+
+```bash
+docker rm $(docker ps -aq --filter ancestor=hello-world:latest)
+```
+
+Then verify:
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+docker images
+```
+
+Important distinction:
+
+- `docker rm`
+  - removes containers
+- `docker rmi`
+  - removes images
+
+For learning, it is useful to remove the containers first and then observe how the `In Use` status for `hello-world` changes.
+
+Note:
+
+- `docker rm` is for stopped containers
+- if a container is still running, stop it first with `docker stop <name-or-id>`

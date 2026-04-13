@@ -74,6 +74,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Not necessarily; an image can be marked in use because a stopped container still references it
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. How do I remove the stopped `hello-world` containers?
+  - A. First confirm them with `docker ps -a --filter ancestor=hello-world:latest`, then use either `docker rm <container-id>` or `docker rm $(docker ps -aq --filter ancestor=hello-world:latest)`
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?
