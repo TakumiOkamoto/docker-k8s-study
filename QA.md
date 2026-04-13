@@ -90,6 +90,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Two approaches: 1) bind mount to replace files dynamically (good for development), 2) write a Dockerfile and build a custom image (good for production, files embedded in image)
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. In `docker build -t my-custom-nginx:latest .`, what does the dot `.` mean?
+  - A. It is the current directory used as build context, i.e., the file scope sent to Docker; `COPY` can only read within that scope
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

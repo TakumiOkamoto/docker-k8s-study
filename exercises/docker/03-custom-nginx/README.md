@@ -203,6 +203,45 @@ Customize and COPY a custom nginx.conf.
 
 ## Q&A
 
+### Q. In `docker build -t my-custom-nginx:latest .`, what does the dot `.` mean?
+
+A. `.` means the current directory, and in Docker it is used as the **build context**.
+
+Three key implications:
+
+- Files under the directory specified by `.` are sent to Docker for build
+- If `-f` is omitted, Docker uses `./Dockerfile` by default
+- `COPY` can only reference files inside the build context
+
+So if you run this inside `exercises/docker/03-custom-nginx`:
+
+```bash
+docker build -t my-custom-nginx:latest .
+```
+
+the whole directory becomes the context, and `COPY index.html ...` reads from that scope.
+
+Notes:
+
+- Large contexts make builds slower
+- Exclude unnecessary files with `.dockerignore`
+- You can replace `.` with another path to change the context
+
+Examples:
+
+```bash
+# use parent directory as context
+docker build -t my-custom-nginx:latest ..
+
+# explicitly specify Dockerfile while keeping current directory as context
+docker build -f Dockerfile -t my-custom-nginx:latest .
+```
+
+Learning points:
+
+- `.` is not only where you run the command, but also the file scope sent to Docker
+- Many `COPY` errors are caused by using the wrong context
+
 ### Q. What's the difference between `docker build` and `docker run`?
 
 A. They are fundamentally different stages:

@@ -90,6 +90,10 @@
   - A. 2 つの方法がある：1) bind mount で差し替える（開発向き、動的反映）2) Dockerfile を書いて build する（本番向き、image に固定化）
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `docker build -t my-custom-nginx:latest .` の `.` はどこのこと？
+  - A. 現在ディレクトリを指す build context。Docker に送るファイル範囲を表し、`COPY` はその範囲内しか参照できない
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

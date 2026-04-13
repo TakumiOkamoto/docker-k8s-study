@@ -206,6 +206,45 @@ nginx.conf をカスタマイズして COPY する。
 
 ## Q&A
 
+### Q. `docker build -t my-custom-nginx:latest .` の `.` はどこのこと？
+
+A. `.` は「現在のディレクトリ（カレントディレクトリ）」を指し、Docker では **build context** として扱われる。
+
+意味としては次の 3 点が重要。
+
+- `.` で指定したディレクトリ配下のファイル群が build 時に Docker へ渡される
+- `-f` を省略した場合、既定で `./Dockerfile` が使われる
+- `COPY` は context 内のファイルしか参照できない
+
+つまり `exercises/docker/03-custom-nginx` で次を実行すると:
+
+```bash
+docker build -t my-custom-nginx:latest .
+```
+
+このディレクトリ全体が context になり、`COPY index.html ...` もその範囲からコピーされる。
+
+補足:
+
+- context が大きいと build が遅くなる
+- 送らなくてよいファイルは `.dockerignore` で除外する
+- context を変えたい場合は `.` の代わりに path を指定できる
+
+例:
+
+```bash
+# 1つ上のディレクトリを context にする
+docker build -t my-custom-nginx:latest ..
+
+# Dockerfile の場所を明示しつつ、context は現在ディレクトリ
+docker build -f Dockerfile -t my-custom-nginx:latest .
+```
+
+学習ポイント:
+
+- `.` は「コマンド実行場所」だけでなく「Docker に渡すファイル範囲」の指定
+- `COPY` エラーは context の取り違えで起きることが多い
+
 ### Q. `docker build` と `docker run` はどう違う？
 
 A. 大きく違う。
