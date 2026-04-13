@@ -19,6 +19,19 @@ docker run --rm -p 8080:80 -v "$PWD/index.html:/usr/share/nginx/html/index.html:
 
 Open <http://localhost:8080>.
 
+## What To Check Before Running
+
+- confirm you are in `exercises/docker/02-nginx`
+- confirm the source file `index.html` exists there
+- confirm host port `8080` is not already in use
+
+Quick checks:
+
+```bash
+pwd
+ls -l index.html
+```
+
 ## What This Configuration Means
 
 - `nginx:alpine`
@@ -38,3 +51,83 @@ Questions this exercise should answer:
 - Is the issue on the host side, the container side, or the port mapping layer?
 - If the page is wrong, is the mount path correct?
 - If the page does not open, is nginx listening and is the port published correctly?
+
+## Where Each Part Lives
+
+- Host
+  - owns the local `index.html`
+  - sends browser traffic to `localhost:8080`
+- Container
+  - runs nginx and listens on port `80`
+  - serves `/usr/share/nginx/html/index.html`
+- Docker port publishing
+  - forwards host port `8080` to container port `80`
+
+This single command is useful because it touches all three layers at once.
+
+## What To Verify After Running
+
+1. Check that nginx did not print startup errors in the terminal.
+2. Open <http://localhost:8080>.
+3. Confirm the page content matches `index.html`.
+
+If you want a second terminal for checks:
+
+```bash
+docker ps
+docker logs <container-id>
+```
+
+## Troubleshooting Order
+
+### 1. The page does not open
+
+- confirm `docker run` is still running
+- confirm `-p 8080:80` was included
+- confirm host port `8080` is not already occupied
+
+### 2. nginx opens, but the page is not your HTML
+
+- confirm `"$PWD/index.html"` points to the right file
+- confirm the mount target `/usr/share/nginx/html/index.html` is correct
+- confirm you launched the command from the intended directory
+
+### 3. The container runs, but updates do not appear
+
+- confirm the mount is the file you are editing
+- confirm you are not seeing a browser cache issue
+- confirm you changed the host file, not a copy elsewhere
+
+## Done When
+
+- the browser shows the content from `index.html`
+- you can explain `-p 8080:80` in your own words
+- you can explain that a bind mount exposes a host file rather than copying it into the image
+- you can describe the order for checking host, container, and port-publishing issues
+
+## Q&A
+
+### Q. What is `nginx`?
+
+A. `nginx` is web server software. It receives HTTP requests from a browser and returns content such as HTML files.
+
+In this exercise, `nginx:alpine` means the container uses the published nginx image directly from Docker Hub.
+
+Key points in this context:
+
+- `nginx` is the web server running inside the container
+- it listens on port `80`
+- it serves files from `/usr/share/nginx/html/` by default
+- in this exercise, that `index.html` is replaced through a bind mount
+
+So this is not an exercise about building nginx itself. It is an exercise about using a ready-made web server to understand port publishing and mounts.
+
+### Q. How should `nginx` be pronounced in Japanese?
+
+A. In Japanese technical conversation, `Engine-X` (`エンジンエックス`) is the natural pronunciation.
+
+Notes:
+
+- it is written as `N-G-I-N-X`
+- saying `エンジンエックス` is clearer than trying to read the letters literally
+- it is not usually pronounced like `ンギンクス` in Japanese conversation
