@@ -58,6 +58,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Yes. `docker inspect` shows source and destination mount paths, and `docker exec` can confirm the mounted result from inside the container
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. How do I find the container ID?
+  - A. Use `docker ps` first, and identify the right container by its published ports or name; in many cases the name is easier to reuse than the raw ID
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

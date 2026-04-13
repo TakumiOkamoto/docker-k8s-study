@@ -315,3 +315,48 @@ In short:
   - can show the host/container mount mapping
 - inside the container
   - you can see the mounted result as files or directories
+
+### Q. How do I find the `container-id`?
+
+A. The most basic way is `docker ps`.
+
+```bash
+docker ps
+```
+
+This shows running containers, including:
+
+- `CONTAINER ID`
+- `NAMES`
+- `PORTS`
+
+For the nginx exercise, you can usually identify the right row by the published port, such as `0.0.0.0:8080->80/tcp`, and then use that row's `CONTAINER ID`.
+
+Example:
+
+```bash
+docker inspect 1a2b3c4d5e6f
+docker exec 1a2b3c4d5e6f ls -l /usr/share/nginx/html
+```
+
+You can also use the container name instead of the ID.
+
+```bash
+docker exec <container-name> ls -l /usr/share/nginx/html
+```
+
+If you want an easier name, assign one at startup.
+
+```bash
+docker run --rm --name study-nginx -p 8080:80 -v "$PWD/index.html:/usr/share/nginx/html/index.html:ro" nginx:alpine
+```
+
+Then you can use `study-nginx` with `docker inspect` or `docker exec`.
+
+If you only want raw IDs, this is also useful:
+
+```bash
+docker ps -q
+```
+
+But if multiple containers are running, `docker ps` is safer because it also shows names and ports.

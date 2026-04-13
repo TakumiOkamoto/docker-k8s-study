@@ -58,6 +58,10 @@
   - A. `docker inspect` の `Mounts` で source と destination を見られ、container 内でも `docker exec` で結果を確認できる
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `container-id` ってどうやって知る？
+  - A. 基本は `docker ps` で確認し、必要なら `NAMES` も使う。学習中は `PORTS` も一緒に見て対象 container を特定するのが安全
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？
