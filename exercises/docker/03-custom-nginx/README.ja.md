@@ -330,6 +330,47 @@ A. はい。`2B` は **2 bytes**（2バイト）で、Docker に送られた bui
 
 この値が小さすぎる時は、context の指定ミスや `.dockerignore` の除外過多を疑う。
 
+### Q. build に使いたいファイルが複数ディレクトリに散在している場合はどうする？
+
+A. 方針としては「Docker が受け取る context を意図的に 1 つ作る」が基本。質問にある一時ディレクトリへ集約して build は有効。
+
+実務での推奨順:
+
+1. **repo ルートを context にする**
+  - `docker build -f path/to/Dockerfile <repo-root>`
+  - `.dockerignore` で不要ファイルを除外
+2. **staging ディレクトリを作って必要ファイルをコピーして build**
+  - CI で再現しやすい
+  - どのファイルを使ったか明示できる
+3. **BuildKit の named context（上級）**
+  - `--build-context name=path` で複数ソースを渡す
+
+シンボリックリンクについて:
+
+- 一時ディレクトリへ「実体コピー」する方が安全で再現性が高い
+- symlink は target が context 外だと期待通りに扱えず、環境差異の原因になりやすい
+- 学習段階では symlink より copy / rsync 集約を推奨
+
+例（staging 方式）:
+
+```bash
+# 例: build 用一時ディレクトリを作成
+rm -rf .build-context
+mkdir -p .build-context
+
+# 必要ファイルを集約
+cp Dockerfile .build-context/
+cp index.html .build-context/
+
+# 必要なら別ディレクトリの資材もコピー
+cp ../shared/nginx.conf .build-context/
+
+# context を一意にして build
+docker build -t my-custom-nginx:latest .build-context
+```
+
+この方法だと「何を build に含めたか」が明確になり、トラブルシュートしやすい。
+
 ### Q. `docker build` と `docker run` はどう違う？
 
 A. 大きく違う。

@@ -106,6 +106,10 @@
   - A. はい。2 bytes を意味し、Docker に送られた build context がほぼ空であるサイン
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. build したいファイルが複数ディレクトリに散在している時はどうする？
+  - A. 一時ディレクトリに集約して build は有効。実務では repo ルート context + `.dockerignore`、または staging copy、上級では `--build-context` を使う。symlink より copy 集約が再現性高い
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

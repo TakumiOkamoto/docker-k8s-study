@@ -106,6 +106,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Yes. It means 2 bytes of build-context data were sent to Docker, usually indicating an almost-empty context
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. What if files needed for build are scattered across multiple directories?
+  - A. Temporary staging directory build is valid. In practice prefer repo-root context + `.dockerignore`, or explicit staging copies; advanced option is BuildKit `--build-context`. Copy-based staging is generally more reproducible than symlink-based assembly
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

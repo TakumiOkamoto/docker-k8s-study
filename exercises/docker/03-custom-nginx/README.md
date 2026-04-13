@@ -327,6 +327,47 @@ How to read it:
 
 If this number is unexpectedly small, check wrong context selection or overly broad `.dockerignore` rules.
 
+### Q. What if build input files are scattered across multiple directories?
+
+A. The core rule is still to provide one intentional build context to Docker. Your idea (collecting files into a temporary directory, then building) is valid and commonly used.
+
+Recommended order in practice:
+
+1. **Use repo root as context**
+  - `docker build -f path/to/Dockerfile <repo-root>`
+  - prune with `.dockerignore`
+2. **Create a staging context directory and copy only required files**
+  - highly reproducible in CI
+  - explicit list of build inputs
+3. **Use BuildKit named contexts (advanced)**
+  - pass multiple sources with `--build-context name=path`
+
+About symlinks:
+
+- Prefer real file copies into staging context for reliability
+- Symlinks to targets outside context are often fragile and can behave differently across environments
+- For learning and team workflows, copy/rsync staging is safer than symlink-based context assembly
+
+Example (staging approach):
+
+```bash
+# create temporary build context
+rm -rf .build-context
+mkdir -p .build-context
+
+# collect required files
+cp Dockerfile .build-context/
+cp index.html .build-context/
+
+# optionally collect assets from other dirs
+cp ../shared/nginx.conf .build-context/
+
+# build from a single explicit context
+docker build -t my-custom-nginx:latest .build-context
+```
+
+This makes build inputs explicit and troubleshooting much easier.
+
 ### Q. What's the difference between `docker build` and `docker run`?
 
 A. They are fundamentally different stages:
