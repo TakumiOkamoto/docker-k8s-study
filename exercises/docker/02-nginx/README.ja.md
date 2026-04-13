@@ -394,3 +394,69 @@ docker run --rm --name web-b -p 8081:80 nginx:alpine
 - `NAMES` は `web-a` と `web-b`
 
 `docker exec` や `docker inspect` の対象を指定するときは、ふつう `NAMES` か `CONTAINER ID` を使う。`IMAGE` は「どの種類の container か」を知るための情報。
+
+### Q. `docker ps` みたいに、Docker で日常的によく使う標準コマンドって他にある？
+
+A. ある。まずは次を押さえると十分実用になる。
+
+状態確認:
+
+- `docker ps`
+  - 起動中 container を見る
+- `docker ps -a`
+  - 停止済みも含めて container 一覧を見る
+- `docker images`
+  - ローカルにある image 一覧を見る
+
+中身・状態の確認:
+
+- `docker logs <name-or-id>`
+  - container の標準出力 / 標準エラーを見る
+- `docker inspect <name-or-id>`
+  - 詳細設定、port、mount、network などを JSON で見る
+- `docker exec -it <name-or-id> sh`
+  - container の中に入って確認する
+
+起動・停止・削除:
+
+- `docker run ...`
+  - 新しい container を起動する
+- `docker stop <name-or-id>`
+  - 起動中 container を止める
+- `docker rm <name-or-id>`
+  - 停止済み container を削除する
+
+image 操作:
+
+- `docker build -t <image-name> .`
+  - Dockerfile から image を作る
+- `docker pull <image>`
+  - image を取得する
+
+この演習の流れに寄せると、最初に特に使うのは次の 6 個。
+
+```bash
+docker ps
+docker logs <name-or-id>
+docker inspect <name-or-id>
+docker exec -it <name-or-id> sh
+docker images
+docker run ...
+```
+
+考え方としては:
+
+- `run`
+  - 作って動かす
+- `ps`
+  - 今どうなっているか見る
+- `logs`
+  - エラーや起動メッセージを見る
+- `inspect`
+  - port / mount / network の事実を確認する
+- `exec`
+  - container の中から見る
+- `images`
+  - 元になる image を見る
+
+この 6 個をまず自然に使えるようになると、Docker の基本操作はかなり前に進む。

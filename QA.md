@@ -66,6 +66,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. No. `IMAGE` tells you which image the container came from, while `NAMES` identifies the running container instance
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Besides `docker ps`, what Docker commands are standard for day-to-day work?
+  - A. Start with `docker logs`, `docker inspect`, `docker exec`, `docker images`, `docker run`, and `docker stop` as the most common basics
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

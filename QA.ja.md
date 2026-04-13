@@ -66,6 +66,10 @@
   - A. 違う。`IMAGE` はどの image から作ったか、`NAMES` は今動いている container 実体の名前
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `docker ps` 以外で、日常的によく使う Docker コマンドは？
+  - A. まずは `docker logs`、`docker inspect`、`docker exec`、`docker images`、`docker run`、`docker stop` あたりが基本
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

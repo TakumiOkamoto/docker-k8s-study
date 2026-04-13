@@ -392,3 +392,69 @@ In that case:
 - `NAMES` is `web-a` and `web-b`
 
 When targeting a specific running container with `docker exec` or `docker inspect`, you normally use `NAMES` or `CONTAINER ID`. `IMAGE` is mainly there to tell you what kind of container it is.
+
+### Q. Besides `docker ps`, what other standard Docker commands do people use all the time?
+
+A. Yes. These are the main day-to-day commands worth learning first.
+
+State and listing:
+
+- `docker ps`
+  - show running containers
+- `docker ps -a`
+  - show all containers, including stopped ones
+- `docker images`
+  - show local images
+
+Inspecting behavior and contents:
+
+- `docker logs <name-or-id>`
+  - show container stdout and stderr
+- `docker inspect <name-or-id>`
+  - show detailed config such as ports, mounts, and networks
+- `docker exec -it <name-or-id> sh`
+  - open a shell inside the container
+
+Lifecycle:
+
+- `docker run ...`
+  - start a new container
+- `docker stop <name-or-id>`
+  - stop a running container
+- `docker rm <name-or-id>`
+  - remove a stopped container
+
+Image operations:
+
+- `docker build -t <image-name> .`
+  - build an image from a Dockerfile
+- `docker pull <image>`
+  - download an image
+
+For this exercise, the first six to internalize are:
+
+```bash
+docker ps
+docker logs <name-or-id>
+docker inspect <name-or-id>
+docker exec -it <name-or-id> sh
+docker images
+docker run ...
+```
+
+The mental model is:
+
+- `run`
+  - create and start
+- `ps`
+  - see what is running now
+- `logs`
+  - read startup messages and errors
+- `inspect`
+  - verify ports, mounts, and networks as facts
+- `exec`
+  - look from inside the container
+- `images`
+  - see the source images
+
+If these six become natural, you can already handle a large part of basic Docker work.
