@@ -90,6 +90,12 @@
   - A. 2 つの方法がある：1) bind mount で差し替える（開発向き、動的反映）2) Dockerfile を書いて build する（本番向き、image に固定化）
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+## Docker References
+
+- nginx:alpine の Dockerfile 構成と仕組み
+  - 詳細: `notes/nginx-dockerfile.ja.md`
+  - 公式イメージの構造、各行の意味、デーモン管理の理由、カスタム Dockerfile テンプレート
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

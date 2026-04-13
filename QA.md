@@ -90,6 +90,12 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Two approaches: 1) bind mount to replace files dynamically (good for development), 2) write a Dockerfile and build a custom image (good for production, files embedded in image)
   - Details: `exercises/docker/02-nginx/README.md`
 
+## Docker References
+
+- nginx:alpine Dockerfile structure and design
+  - Details: `notes/nginx-dockerfile.md`
+  - Official image structure, line-by-line explanation, daemon management reasoning, custom Dockerfile template
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?
