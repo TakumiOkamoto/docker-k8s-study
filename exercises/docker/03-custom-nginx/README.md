@@ -368,6 +368,36 @@ docker build -t my-custom-nginx:latest .build-context
 
 This makes build inputs explicit and troubleshooting much easier.
 
+### Q. What if I want files from one context to end up at different paths inside the container?
+
+A. That is exactly how Dockerfiles are meant to be used. From one context, you can use multiple `COPY` instructions and place each file at a different destination path.
+
+Example:
+
+```dockerfile
+FROM nginx:alpine
+
+# place HTML in nginx doc root
+COPY index.html /usr/share/nginx/html/index.html
+
+# place nginx config under /etc/nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# place app config under /app/config
+COPY app-config.yaml /app/config/app-config.yaml
+```
+
+Key points:
+
+- Context defines where source files can be read from
+- Destination is freely chosen per `COPY <src> <dest>`
+- So "one context, many destination paths" is the normal pattern
+
+Notes:
+
+- Files outside context cannot be copied in standard `COPY`
+- For scattered inputs, pre-stage files or use BuildKit `--build-context`
+
 ### Q. What's the difference between `docker build` and `docker run`?
 
 A. They are fundamentally different stages:

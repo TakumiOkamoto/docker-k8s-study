@@ -110,6 +110,10 @@
   - A. 一時ディレクトリに集約して build は有効。実務では repo ルート context + `.dockerignore`、または staging copy、上級では `--build-context` を使う。symlink より copy 集約が再現性高い
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. context 内のファイルをコンテナ内の別々のパスに置いて build できる？
+  - A. できる。`COPY <src> <dest>` を複数書けば、1つの context から複数の配置先へ展開できる（これが標準）
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

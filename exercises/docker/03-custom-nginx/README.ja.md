@@ -371,6 +371,36 @@ docker build -t my-custom-nginx:latest .build-context
 
 この方法だと「何を build に含めたか」が明確になり、トラブルシュートしやすい。
 
+### Q. context 内のファイルを、コンテナ内の別々のパスに置いた状態で build したい時は？
+
+A. それが Dockerfile の基本的な使い方。**1つの context から、`COPY` を複数書いて任意の配置先に置ける**。
+
+例:
+
+```dockerfile
+FROM nginx:alpine
+
+# HTML は nginx 配信パスへ
+COPY index.html /usr/share/nginx/html/index.html
+
+# nginx 設定は /etc/nginx へ
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# アプリ設定は /app/config へ
+COPY app-config.yaml /app/config/app-config.yaml
+```
+
+ポイント:
+
+- context は「参照元ファイルの範囲」
+- 配置先は `COPY <src> <dest>` の `<dest>` で自由に決められる
+- つまり「context は1つ、配置先は複数」が普通
+
+補足:
+
+- context 外のファイルは通常 `COPY` できない
+- 散在ファイルは事前に集約するか、BuildKit `--build-context` を使う
+
 ### Q. `docker build` と `docker run` はどう違う？
 
 A. 大きく違う。

@@ -110,6 +110,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Temporary staging directory build is valid. In practice prefer repo-root context + `.dockerignore`, or explicit staging copies; advanced option is BuildKit `--build-context`. Copy-based staging is generally more reproducible than symlink-based assembly
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. Can files from one context be placed at different paths inside the container during build?
+  - A. Yes. Use multiple `COPY <src> <dest>` lines; one context with multiple destination paths is the standard Dockerfile pattern
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design
