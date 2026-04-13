@@ -269,3 +269,49 @@ So this is usually not "both values measured live".
 - one is displayed from known container config
 
 The exercise `index.html` now demonstrates this pattern and visualizes the mapping idea as `host 8080 -> container 80`.
+
+### Q. Using the same idea, can I confirm which host-side and container-side files or directories are connected by `-v`?
+
+A. Yes, but this is something you confirm with Docker CLI rather than from the browser.
+
+The clearest source is `docker inspect`, especially the `Mounts` section.
+
+Typical flow:
+
+```bash
+docker ps
+docker inspect <container-id>
+```
+
+In `Mounts`, you can verify at least:
+
+- the host-side path (`Source`)
+- the container-side path (`Destination`)
+- the mount type (`Type`)
+- whether it is read-only or read-write (`RW`)
+
+If you want a shorter view:
+
+```bash
+docker inspect <container-id> --format '{{range .Mounts}}{{println .Type .Source "->" .Destination "RW=" .RW}}{{end}}'
+```
+
+You can also confirm from inside the container:
+
+```bash
+docker exec <container-id> ls -l /usr/share/nginx/html
+```
+
+With a file mount, you will see where that single file appears in the container. With a directory mount, you will see the mounted directory contents.
+
+However, browser-side HTML or JavaScript usually cannot discover the host-side source path. This is similar to the port example: the browser can see the served result, but Docker manages the host-to-container binding details.
+
+In short:
+
+- browser
+  - can see content returned by the container
+  - cannot normally see the host-side source path
+- Docker CLI
+  - can show the host/container mount mapping
+- inside the container
+  - you can see the mounted result as files or directories

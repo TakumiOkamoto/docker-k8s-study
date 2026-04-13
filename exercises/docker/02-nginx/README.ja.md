@@ -271,3 +271,49 @@ A. 学習用としては「表示できる」。ただし、表示の性質は 2
 という形になる。
 
 この演習の `index.html` では実際にこの形式で表示しており、`host 8080 -> container 80` の対応を画面で確認できるようにしてある。
+
+### Q. 同じ考え方で、`-v` でつないだ host 側と container 側の file / directory を確認できる？
+
+A. 確認できる。ただし、これはブラウザではなく Docker CLI 側で見るのが基本。
+
+いちばん分かりやすいのは `docker inspect` の `Mounts`。
+
+流れ:
+
+```bash
+docker ps
+docker inspect <container-id>
+```
+
+ここで `Mounts` を見ると、少なくとも次が確認できる。
+
+- host 側の path (`Source`)
+- container 側の path (`Destination`)
+- file mount か bind mount かなどの種別 (`Type`)
+- 読み取り専用かどうか (`RW`)
+
+見やすく絞るなら次でもよい。
+
+```bash
+docker inspect <container-id> --format '{{range .Mounts}}{{println .Type .Source "->" .Destination "RW=" .RW}}{{end}}'
+```
+
+さらに container 側からも確認できる。
+
+```bash
+docker exec <container-id> ls -l /usr/share/nginx/html
+```
+
+file mount なら、その file が container 内のどこに見えているかを確認できる。directory mount なら、その directory 配下の複数 file が見える。
+
+ただし、HTML / browser から host 側 path を知るのは基本できない。これは port の話と似ていて、browser が見える範囲と Docker が管理している範囲が分かれているから。
+
+整理すると:
+
+- browser
+  - container から返されたコンテンツは見える
+  - host 側の mount 元 path は見えない
+- Docker CLI
+  - host 側 path と container 側 path の対応を見られる
+- container 内
+  - mount された結果として見えている file / directory を確認できる

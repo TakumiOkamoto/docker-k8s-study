@@ -54,6 +54,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. The host-side URL port can be detected in the browser, while the container-side port is usually shown as known config because browser JS cannot directly inspect it
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Can I confirm which host-side and container-side files or directories are connected by `-v`?
+  - A. Yes. `docker inspect` shows source and destination mount paths, and `docker exec` can confirm the mounted result from inside the container
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

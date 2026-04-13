@@ -54,6 +54,10 @@
   - A. host 側は URL から実測表示できる一方、container 側は通常ブラウザから自動検知できないため設定値として表示するのが実用的
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `-v` でつないだ host 側と container 側の file / directory は確認できる？
+  - A. `docker inspect` の `Mounts` で source と destination を見られ、container 内でも `docker exec` で結果を確認できる
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？
