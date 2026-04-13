@@ -38,9 +38,13 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. On Docker Desktop for macOS, images live inside the Docker Desktop disk image, and you typically control the disk image location rather than a per-image folder
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. What does it mean that the image is "inside `Docker.raw`"?
+  - A. `Docker.raw` looks like one file from macOS, but Docker Desktop uses it as a virtual disk that contains the Linux filesystem holding Docker data
+  - Details: `exercises/docker/02-nginx/README.md`
+
 - Q. Is the Linux VM always created for Docker Desktop, and who decides its specs?
   - A. On Docker Desktop for macOS, Docker Desktop uses its own Linux VM for Linux containers, and CPU, memory, and disk are managed through Docker Desktop resource settings
-  - Details: Docker Desktop settings and the `desktop-linux` context
+  - Details: `exercises/docker/02-nginx/README.md`
 
 ## Collaboration
 

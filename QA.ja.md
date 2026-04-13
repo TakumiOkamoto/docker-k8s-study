@@ -38,9 +38,13 @@
   - A. Docker Desktop on macOS では Docker の仮想ディスク `Docker.raw` の中に保存され、個別 image の保存先ではなく disk image 全体の保存場所を設定で動かす
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `Docker.raw` の「中にある」ってどういう意味？
+  - A. macOS からは 1 ファイルだが、Docker Desktop の Linux VM からは仮想ディスクとして扱われ、その中の Linux filesystem に Docker データが入る
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 - Q. Linux VM は Docker 管理用に必ず作られるの？ スペックは誰が決めるの？
   - A. Docker Desktop on macOS では Linux コンテナを動かすための Docker Desktop 管理 VM が使われ、CPU / memory / disk は Docker Desktop の Resources 設定で管理する
-  - 詳細: Docker Desktop settings と `desktop-linux` context
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
 ## Collaboration
 

@@ -184,3 +184,47 @@ Control differs by environment:
   - the common default is `/var/lib/docker`
 
 The important idea is that on Docker Desktop for macOS, you usually manage the location of the whole Docker disk image, not the storage path of each individual image.
+
+### Q. What does it mean that the image is "inside `Docker.raw`"?
+
+A. From macOS, `Docker.raw` looks like one large file. From Docker Desktop's Linux VM, it is used as a virtual disk.
+
+Inside that virtual disk is a Linux filesystem, and that filesystem stores Docker image layers, container writable layers, and volumes.
+
+Conceptually:
+
+```text
+macOS
+└─ Docker.raw
+   └─ virtual disk used by Docker Desktop
+      └─ Linux filesystem
+         ├─ image layers
+         ├─ container writable layers
+         └─ volumes
+```
+
+So `nginx:alpine` is not visible as a normal host folder. It lives inside the Docker-managed Linux storage used by Docker Desktop.
+
+### Q. Is the Linux VM always created for Docker Desktop, and who decides its specs?
+
+A. On Docker Desktop for macOS, Docker Desktop uses a Linux VM to run Linux containers.
+
+The reason is simple: Linux containers expect a Linux kernel, but the host here is macOS. Docker Desktop therefore provides a Linux environment as a VM, and Docker Engine plus containers run inside it.
+
+The simplified flow looks like this:
+
+```text
+macOS terminal
+-> docker CLI
+-> Docker Desktop
+-> Docker Desktop managed Linux VM
+-> Docker Engine
+-> containers
+```
+
+About sizing:
+
+- Docker Desktop chooses the initial defaults
+- the user can adjust CPU, memory, swap, and disk in Docker Desktop Resources settings
+
+On this Mac, `docker context ls` shows `desktop-linux`, which indicates the Docker Desktop managed Linux environment is in use.
