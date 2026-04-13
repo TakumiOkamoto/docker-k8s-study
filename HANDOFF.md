@@ -48,6 +48,14 @@ The next step is `exercises/docker/02-nginx`. The focus is:
 - understanding host and container port mapping
 - learning which layer to inspect when a problem occurs
 
+To make resuming easier, `exercises/docker/02-nginx/README.md` now includes:
+
+- pre-run checks
+- post-run verification
+- a layer-by-layer troubleshooting order
+
+This sandbox cannot access the Docker socket, so live container verification is still pending here. The next session should resume by running the `02-nginx` `docker run` command on the user's machine and checking `localhost:8080`.
+
 ## Files To Read First
 
 1. `STATUS.ja.md` and `STATUS.md`

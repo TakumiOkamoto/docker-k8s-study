@@ -46,6 +46,10 @@ The current stage is:
 3. Next step is nginx with port publishing and bind mounts
 4. Then move to a local Kubernetes cluster with `kind`
 
+Latest journal:
+
+- `journal/2026-04-13.md`
+
 ## Commit Policy
 
 Use Conventional Commits in English.

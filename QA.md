@@ -20,6 +20,16 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. `Arupain` (`アルパイン`)
   - Details: `exercises/docker/01-hello/README.md`
 
+### `02-nginx`
+
+- Q. What is `nginx`?
+  - A. Web server software that receives HTTP requests and returns content such as HTML
+  - Details: `exercises/docker/02-nginx/README.md`
+
+- Q. How should `nginx` be pronounced in Japanese?
+  - A. `Engine-X` (`エンジンエックス`)
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

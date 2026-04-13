@@ -20,6 +20,16 @@
   - A. `アルパイン` でよい
   - 詳細: `exercises/docker/01-hello/README.ja.md`
 
+### `02-nginx`
+
+- Q. `nginx` って何？
+  - A. HTTP リクエストを受けて HTML などを返す Web サーバソフトウェア
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
+- Q. `nginx` ってどう発音するの？
+  - A. `エンジンエックス`
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

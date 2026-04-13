@@ -27,10 +27,11 @@ Docker setup is complete. The first Dockerfile exercise is complete. The next st
 
 ## Next Steps
 
-1. Run `exercises/docker/02-nginx`
-2. Understand port publishing and bind mounts
-3. Create the first local Kubernetes cluster with `kind`
-4. Apply a Kubernetes Deployment and Service
+1. Run `docker run --rm -p 8080:80 -v "$PWD/index.html:/usr/share/nginx/html/index.html:ro" nginx:alpine` in `exercises/docker/02-nginx`
+2. Confirm that `index.html` is visible at `localhost:8080`
+3. Be able to explain the host, container, and port-publishing layers separately
+4. Create the first local Kubernetes cluster with `kind`
+5. Apply a Kubernetes Deployment and Service
 
 ## Current Understanding Targets
 
@@ -40,3 +41,9 @@ Docker setup is complete. The first Dockerfile exercise is complete. The next st
 - Kubernetes Pod, Deployment, and Service
 - what each configuration file controls
 - which layer to inspect during troubleshooting
+
+## Resume Note
+
+- `exercises/docker/02-nginx/README.md` now includes pre-run checks, post-run verification, and a troubleshooting order
+- Docker socket access is blocked from this sandbox, so live `docker info` re-verification was not possible here
+- The concrete next action on the user's machine is to run the `02-nginx` command locally
