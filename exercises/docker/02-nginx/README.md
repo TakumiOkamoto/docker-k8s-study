@@ -739,3 +739,70 @@ Characteristics:
 **Next step context:**
 
 This exercise so far has used bind mount with `nginx:alpine` to support dynamic file changes during development. When the goal shifts to "create a production web server," the standard approach is to write a Dockerfile and build an independent image.
+
+### Q. How do I see the default file state of a container?
+
+A. Use `docker exec` to inspect the container's filesystem while it is running.
+
+View a directory in the running container:
+
+```bash
+docker exec <container-id> ls /usr/share/nginx/html
+```
+
+More detailed view:
+
+```bash
+docker exec <container-id> ls -la /usr/share/nginx/html
+```
+
+See file contents:
+
+```bash
+docker exec <container-id> cat /usr/share/nginx/html/index.html
+```
+
+**Practical example:**
+
+While running Exercise 02:
+
+```bash
+# Terminal 1: start container with bind mount
+docker run --rm -p 8080:80 \
+  -v "$PWD/index.html:/usr/share/nginx/html/index.html:ro" \
+  nginx:alpine
+
+# Terminal 2: check the running container's state
+docker ps
+# => get container-id
+
+docker exec <container-id> ls -la /usr/share/nginx/html
+# Output (example):
+# total 12
+# drwxr-xr-x 1 root   root   4096 Mar 1 12:00 .
+# drwxr-xr-x 1 root   root   4096 Mar 1 12:00 ..
+# -rw-r--r-- 1 root   root   1024 Mar 1 12:34 index.html
+# -rw-r--r-- 1 root   root   50k  Mar 1 10:00 50x.html
+```
+
+**More detailed inspection:**
+
+```bash
+# check mount source/destination mapping
+docker inspect <container-id> --format '{{range .Mounts}}{{println .Source "->" .Destination}}{{end}}'
+
+# see file metadata (permissions, timestamps, etc.)
+docker exec <container-id> stat /usr/share/nginx/html/index.html
+
+# check mounted file size
+docker exec <container-id> du -h /usr/share/nginx/html/index.html
+```
+
+This is useful for comparing "what files exist before and after bind mount" and understanding exactly what nginx sees.
+
+**Use cases:**
+
+- Verify that nginx is really serving the mounted file
+- Copy default container content to the host (using `docker cp`)
+- Check that permissions are correct
+- Understand the container's directory structure

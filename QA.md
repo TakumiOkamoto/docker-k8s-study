@@ -96,6 +96,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - Details: `notes/nginx-dockerfile.md`
   - Official image structure, line-by-line explanation, daemon management reasoning, custom Dockerfile template
 
+- Q. How do I see the default file state of a container?
+  - A. Use `docker exec <container-id> ls /path` to see container directories. Use `docker inspect` for mount info, `docker stat` for file metadata
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

@@ -96,6 +96,10 @@
   - 詳細: `notes/nginx-dockerfile.ja.md`
   - 公式イメージの構造、各行の意味、デーモン管理の理由、カスタム Dockerfile テンプレート
 
+- Q. コンテナのデフォルトファイル状態を確認するには？
+  - A. `docker exec <container-id> ls /path` でコンテナ内の directory を見る。`docker inspect` で mount 情報、`docker stat` で file metadata を確認
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

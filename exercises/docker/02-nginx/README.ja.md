@@ -741,3 +741,70 @@ docker run --rm -p 8080:80 my-nginx:latest
 **関連する次の演習:**
 
 これまで bind mount で `nginx:alpine` を使ってきたのは、「ホスト側のファイル変更を動的に反映したい」開発シーンを想定している設定。実際に「本番環境用の web サーバを作りたい」となれば、Dockerfile を書いて独立した image を build するのが標準的なアプローチになる。
+
+### Q. コンテナとしてのデフォルトファイル状態を確認するには？
+
+A. `docker exec` コマンドでコンテナ内のファイルシステムを見る。
+
+実行中 container の directory を確認:
+
+```bash
+docker exec <container-id> ls /usr/share/nginx/html
+```
+
+より詳し見たい場合:
+
+```bash
+docker exec <container-id> ls -la /usr/share/nginx/html
+```
+
+ファイルの内容を見る:
+
+```bash
+docker exec <container-id> cat /usr/share/nginx/html/index.html
+```
+
+**実践例:**
+
+演習 02 を実行している場合:
+
+```bash
+# Terminal 1: コンテナ起動（bind mount 付き）
+docker run --rm -p 8080:80 \
+  -v "$PWD/index.html:/usr/share/nginx/html/index.html:ro" \
+  nginx:alpine
+
+# Terminal 2: 実行中 container の状態を確認
+docker ps
+# => container-id を取得
+
+docker exec <container-id> ls -la /usr/share/nginx/html
+# Output (例):
+# total 12
+# drwxr-xr-x 1 root   root   4096 Mar 1 12:00 .
+# drwxr-xr-x 1 root   root   4096 Mar 1 12:00 ..
+# -rw-r--r-- 1 root   root   1024 Mar 1 12:34 index.html
+# -rw-r--r-- 1 root   root   50k  Mar 1 10:00 50x.html
+```
+
+**更に細かく確認する場合:**
+
+```bash
+# mount 情報を確認（source / destination の対応）
+docker inspect <container-id> --format '{{range .Mounts}}{{println .Source "->" .Destination}}{{end}}'
+
+# file の情報（タイプ、permissions など）
+docker exec <container-id> stat /usr/share/nginx/html/index.html
+
+# mount されたファイルのサイズ確認
+docker exec <container-id> du -h /usr/share/nginx/html/index.html
+```
+
+このやり方で「bind mount 前後でどのファイルが見えているか」を比較できるのが `docker exec` の便利さ。
+
+**用途:**
+
+- 「nginx が本当にこのファイルを見ているか」確認したい時
+- 「デフォルトコンテンツをホスト側にコピーしたい」時（`docker cp` で可能）
+- 「permission が正しいか」確認したい時
+- 「コンテナ内の directory structure」を理解したい時
