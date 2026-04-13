@@ -82,6 +82,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. A Docker filter that narrows down to containers created from a specific image. `ancestor` means "parent" or "predecessor"; the image is the ancestor generation of the container
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. The nginx container is set up to serve `/usr/share/nginx/html/index.html` as the top-level HTML and start a Web server. Is my understanding correct that the container comes pre-built this way?
+  - A. Your understanding is correct. `nginx:alpine` is a pre-built image that already has nginx installed and configured (via Dockerfile) to listen on port 80 and serve from `/usr/share/nginx/html/`
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

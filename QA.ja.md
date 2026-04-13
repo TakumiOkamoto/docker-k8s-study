@@ -82,6 +82,10 @@
   - A. Docker フィルターで「このイメージから作られた container」を絞り込む。`ancestor` は「祖先」という意味の英語で、イメージが container の親世代にあたるから
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. nginx コンテナは `/usr/share/nginx/html/index.html` をトップ HTML として Web サーバを立ち上げてくれるもの。そのようにコンテナが出来上がっているってことでいいのか？
+  - A. その理解で正しい。`nginx:alpine` は既成の image で、Dockerfile で nginx インストール → ポート 80 → `/usr/share/nginx/html/` 配信対象のように既に設定された出来上がった state で public されている
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

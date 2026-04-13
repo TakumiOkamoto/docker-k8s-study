@@ -589,3 +589,46 @@ Learning takeaways:
 
 - helps clarify the parent-child relationship between images and containers
 - a way to reverse-lookup containers by their source image name
+
+### Q. The nginx container is set up to serve `/usr/share/nginx/html/index.html` as the top-level HTML and start a Web server. Is my understanding correct that the container comes pre-built this way?
+
+A. Your understanding is correct. `nginx:alpine` is a pre-built, publicly available image in which nginx has already been installed and configured via Dockerfile to listen on port 80 and serve files from `/usr/share/nginx/html/`. This is a complete, ready-to-use package.
+
+In other words:
+
+- All we do is run `docker run` to start it
+- The container automatically executes nginx on startup
+- nginx is already configured to listen on port 80 and serve the `/usr/share/nginx/html/` directory
+
+Role division in this exercise:
+
+```
+nginx:alpine image (pre-built)
+└─ nginx starts and serves `/usr/share/nginx/html/`
+
+What we add
+└─ `-p 8080:80` to connect host port 8080 → container port 80
+└─ `-v "$PWD/index.html:/usr/share/nginx/html/index.html:ro"` to
+   replace the file that nginx serves with our local file
+```
+
+Simplified Dockerfile concept:
+
+```dockerfile
+FROM alpine:latest
+RUN apk add nginx
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+- installs nginx
+- exposes port 80
+- automatically runs `nginx ...` when the container starts
+
+In essence, when you pull this image and run `docker run`, it is already functioning as a Web server by design.
+
+Learning insight:
+
+- Pre-built images are published in an already-configured state
+- Users specify `-p` and `-v` options to adapt the image to their use case
+- Understanding "what is nginx:alpine" and "what does port 80 mean" upfront makes the purpose of each Docker option clearer

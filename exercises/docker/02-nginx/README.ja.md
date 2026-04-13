@@ -591,3 +591,46 @@ docker ps -a --filter ancestor=nginx:alpine
 
 - image と container の親子関係を理解する取っ掛かり
 - filter 的には「image by name」で container を逆引きする手段
+
+### Q. nginx コンテナは、`/usr/share/nginx/html/index.html` をトップ HTML として、Web サーバを立ち上げてくれるもの。そのようにコンテナが出来上がっているってことでいいのか？
+
+A. その理解で正しい。`nginx:alpine` は既成の image であり、Dockerfile ですでに「nginx をインストール」→「ポート 80 で待ち受け」→「'/usr/share/nginx/html/' ディレクトリを配信対象」というように設定された出来上がった state で public されている。
+
+つまり:
+
+- 我々は `docker run` で起動するだけ
+- コンテナは起動時に自動で nginx を実行
+- nginx は `/usr/share/nginx/html/` の中を配信対象にして、ポート 80 で request を待つ
+
+この演習での役割分担:
+
+```
+nginx:alpine イメージ（既成品）
+└─ nginx が起動して `/usr/share/nginx/html/` を配信
+
+我々がやること
+└─ `-p 8080:80` でホスト 8080 → container 80 に接続
+└─ `-v "$PWD/index.html:/usr/share/nginx/html/index.html:ro"` で
+   ホスト側ファイルを、nginx が配信するファイルに差し替える
+```
+
+Dockerfile 側の簡略版イメージ:
+
+```dockerfile
+FROM alpine:latest
+RUN apk add nginx
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+- nginx をインストール
+- ポート 80 を公開
+- container 起動時に `nginx ...` を自動実行
+
+つまり、この image を pull して `docker run` すれば、その時点で既に Web サーバとして動く、という設計になっている。
+
+学習結論:
+
+- 既成 image は「そのように出来上がった状態」で public されている
+- ユーザーは「その image の使い方」に合わせて `-p` や `-v` を指定する
+- だから「nginx:alpine とは何か」と「ポート 80 とは何か」を最初から理解すると、使い方の意図が見えやすくなる
