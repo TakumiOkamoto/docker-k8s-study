@@ -36,7 +36,7 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 - Update `STATUS.ja.md` whenever the learning stage changes.
 - Update `journal/YYYY-MM-DD.md` when meaningful progress is made.
 - Use Conventional Commits in English for all commit messages.
-- Prepare changes through local edits and local commits; verify `git push` availability per session. If explicitly requested by the user and technically available, the AI may push.
+- Prepare changes through local edits and local commits; verify `git push` availability per session. When technically available, the AI should push by default unless the user asks not to.
 
 ## Priority Files
 
@@ -66,4 +66,4 @@ The user places very high trust in the AI collaborator. Respect that trust by be
 ## Collaboration Pattern
 
 - The AI handles edits, note updates, and local commits.
-- The AI may also handle `git push` when explicitly requested by the user and when remote/auth conditions allow it.
+- The AI handles `git push` by default when remote/auth conditions allow it, unless the user asks to skip push.
