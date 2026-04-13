@@ -252,3 +252,22 @@ docker run --rm -p 8080:80 -v "$PWD:/usr/share/nginx/html:ro" nginx:alpine
 
 - file mount は「1 ファイルだけ差し替えたい」とき向き
 - directory mount は「HTML/CSS/JS まとめて配信したい」とき向き
+
+### Q. HTML 上に「ホスト側ポート」と「コンテナ側ポート」を同時表示できる？
+
+A. 学習用としては「表示できる」。ただし、表示の性質は 2 つで違う。
+
+- ホスト側ポート
+  - ブラウザの URL から取得できる (`window.location.port`)
+- コンテナ側ポート
+  - ブラウザから自動検知は基本できない
+  - nginx 設定や `docker run -p` の意図として表示する（例: `80`）
+
+つまり「完全に両方を実測」ではなく、
+
+- 片方は実測（host 側）
+- 片方は設定値の可視化（container 側）
+
+という形になる。
+
+この演習の `index.html` では実際にこの形式で表示しており、`host 8080 -> container 80` の対応を画面で確認できるようにしてある。

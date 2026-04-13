@@ -3,9 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>docker-k8s-study</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.5;
+        margin: 2rem;
+      }
+
+      .ports {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        max-width: 640px;
+      }
+
+      .ports p {
+        margin: 0.35rem 0;
+      }
+
+      .label {
+        font-weight: 700;
+      }
+    </style>
   </head>
   <body>
     <h1>docker-k8s-study nginx check</h1>
     <p>If you can read this, the container is serving your local file.</p>
+
+    <div class="ports">
+      <p><span class="label">Host-side view (browser URL port):</span> <span id="host-port">detecting...</span></p>
+      <p><span class="label">Container-side view (nginx listen port):</span> <span id="container-port">80</span></p>
+      <p>This page can detect the host-side port from the URL, but the container-side value is shown as an expected configuration value.</p>
+      <p>Mapping idea for this exercise: <strong>host 8080 -> container 80</strong></p>
+    </div>
+
+    <script>
+      (function () {
+        var port = window.location.port;
+        var hostPort = port || (window.location.protocol === "https:" ? "443" : "80");
+        document.getElementById("host-port").textContent = hostPort;
+      })();
+    </script>
   </body>
 </html>

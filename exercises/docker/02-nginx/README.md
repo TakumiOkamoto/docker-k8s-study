@@ -252,3 +252,20 @@ In short:
 
 - file mount is good when you want to replace exactly one file
 - directory mount is better when you want to serve multiple related assets together
+
+### Q. Can HTML show both the host-side port and the container-side port at the same time?
+
+A. Yes, for learning purposes you can show both, but they are different kinds of information.
+
+- Host-side port
+  - can be read from the browser URL (`window.location.port`)
+- Container-side port
+  - is not directly discoverable by browser JavaScript in normal setups
+  - should be shown as an expected configuration value (for this exercise, `80`)
+
+So this is usually not "both values measured live".
+
+- one is observed at runtime (host-side URL port)
+- one is displayed from known container config
+
+The exercise `index.html` now demonstrates this pattern and visualizes the mapping idea as `host 8080 -> container 80`.

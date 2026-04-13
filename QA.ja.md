@@ -50,6 +50,10 @@
   - A. `-v` は file でも directory でも mount でき、複数アセットを配信するなら配信ディレクトリごと mount するのが基本
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. HTML にホスト側ポートとコンテナ側ポートを同時表示できる？
+  - A. host 側は URL から実測表示できる一方、container 側は通常ブラウザから自動検知できないため設定値として表示するのが実用的
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

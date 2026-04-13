@@ -50,6 +50,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. `-v` can mount either a file or a directory, and for multi-asset static content you typically mount the whole content directory
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Can HTML show both host-side and container-side ports at the same time?
+  - A. The host-side URL port can be detected in the browser, while the container-side port is usually shown as known config because browser JS cannot directly inspect it
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?
