@@ -315,6 +315,18 @@ ls -l
 
 Confirm `index.html` is inside the chosen context before running build.
 
+### Q. In `transferring context: 2B`, does `2B` mean size/capacity?
+
+A. Yes. `2B` means **2 bytes**, i.e., the amount of build-context data sent to Docker.
+
+How to read it:
+
+- `B` stands for byte
+- Same unit family as `KB` / `MB` / `GB`
+- `2B` is extremely small, so it usually means the context is almost empty
+
+If this number is unexpectedly small, check wrong context selection or overly broad `.dockerignore` rules.
+
 ### Q. What's the difference between `docker build` and `docker run`?
 
 A. They are fundamentally different stages:

@@ -102,6 +102,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Because `index.html` is not in the selected build context. `-f` finds Dockerfile, but `COPY` can only read files inside context
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. In `transferring context: 2B`, does `2B` mean size?
+  - A. Yes. It means 2 bytes of build-context data were sent to Docker, usually indicating an almost-empty context
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

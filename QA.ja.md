@@ -102,6 +102,10 @@
   - A. build context に `index.html` が含まれていないため。`-f` で Dockerfile を読めても、`COPY` は context 内しか参照できない
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. `transferring context: 2B` の `2B` は容量の意味？
+  - A. はい。2 bytes を意味し、Docker に送られた build context がほぼ空であるサイン
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

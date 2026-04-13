@@ -318,6 +318,18 @@ ls -l
 
 `index.html` が context に含まれていることを確認してから build する。
 
+### Q. `transferring context: 2B` の `2B` は容量のこと？
+
+A. はい。`2B` は **2 bytes**（2バイト）で、Docker に送られた build context のデータ量を表す。
+
+読み方のコツ:
+
+- `B` は byte
+- `KB` / `MB` / `GB` と同じ単位系
+- `2B` は極端に小さいため「context がほぼ空」のサイン
+
+この値が小さすぎる時は、context の指定ミスや `.dockerignore` の除外過多を疑う。
+
 ### Q. `docker build` と `docker run` はどう違う？
 
 A. 大きく違う。
