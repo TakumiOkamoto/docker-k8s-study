@@ -806,3 +806,79 @@ This is useful for comparing "what files exist before and after bind mount" and 
 - Copy default container content to the host (using `docker cp`)
 - Check that permissions are correct
 - Understand the container's directory structure
+
+### Q. Does `docker exec` require the container to be running? And what does a bind-mounted file look like when viewed with `docker exec`?
+
+A. Exactly right. Let me clarify:
+
+**Prerequisite for `docker exec`:**
+
+- `docker exec` only works on a **running (active)** container
+- You cannot use `docker exec` on a stopped container
+
+**Container state flow:**
+
+```
+docker run               ← container starts → running state
+  ↓
+docker exec             ← inject command into the running container
+  ↓
+container keeps running ← remains in running state
+```
+
+**Bind mount relationship:**
+
+```
+Host side
+  /Users/.../index.html
+        ↓ (connected by -v mount)
+Container side
+  /usr/share/nginx/html/index.html
+        ↓ (when viewing with docker exec ls)
+      → shows the mounted state (= the host's actual file)
+```
+
+So when you `docker exec ls`, you see "the actual file the container sees" — which is the bind-mounted version from the host.
+
+**Practical example:**
+
+```bash
+# Terminal 1: start container with bind mount
+docker run --rm -p 8080:80 \
+  -v "$PWD/index.html:/usr/share/nginx/html/index.html:ro" \
+  nginx:alpine
+
+# Terminal 2: in another terminal, run docker exec
+docker ps
+# => get container-id
+
+docker exec <container-id> ls -la /usr/share/nginx/html/index.html
+# Output:
+# -rw-r--r-- 1 root root 1024 Mar 1 12:34 /usr/share/nginx/html/index.html
+# ↑ same as the host-side index.html
+
+# Terminal 1 or 2: edit the file on the host side
+vi index.html
+# modify file content
+
+# Terminal 2: check again with docker exec
+docker exec <container-id> cat /usr/share/nginx/html/index.html
+# Output:
+# → shows the edited content (because bind mount connects them)
+```
+
+**Key points:**
+
+- `docker exec` targets a **running** container
+- Bind mount means "seeing the same file", so host changes appear to the container immediately
+- What you see via `docker exec` reflects the current content
+
+**Comparison:**
+
+| Method | Sees |
+|--------|------|
+| Browse `localhost:8080` | HTML as served by nginx |
+| `docker exec cat /path/to/file` | Raw file content |
+| `docker logs <container-id>` | nginx access/error logs |
+
+By using all three, you can trace an entire path: host file change → docker sees it → nginx serves it → browser receives it. This chain is where Docker's value becomes tangible.

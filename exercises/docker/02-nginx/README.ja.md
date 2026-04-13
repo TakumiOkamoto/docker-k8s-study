@@ -808,3 +808,79 @@ docker exec <container-id> du -h /usr/share/nginx/html/index.html
 - 「デフォルトコンテンツをホスト側にコピーしたい」時（`docker cp` で可能）
 - 「permission が正しいか」確認したい時
 - 「コンテナ内の directory structure」を理解したい時
+
+### Q. `docker exec` するには、コンテナが running していないといけない？また、bind mount されているファイルは `docker exec` で見るとどう表示される？
+
+A. 完全にその通り。整理すると：
+
+**`docker exec` の前提条件:**
+
+- `docker exec` を実行できるには、対象 container が **running（起動中）** である必要がある
+- 停止済み container に `docker exec` は使えない
+
+**コンテナの状態:**
+
+```
+docker run               ← コンテナが started（起動）→ running 状態
+  ↓
+docker exec             ← 実行中コンテナに対して command を inject
+  ↓
+コンテナは実行し続ける ← running 状態継続
+```
+
+**bind mount との関係:**
+
+```
+ホスト側
+  /Users/.../index.html
+        ↓ (mount -v で結ぶ)
+コンテナ側
+  /usr/share/nginx/html/index.html
+        ↓ (docker exec ls で見ると)
+      → mount 後の状態（つまりホスト側のファイル）が見える
+```
+
+つまり、`docker exec ls` で見えるのは「bind mount された後の、実際にコンテナが見ているファイル」。
+
+**実践例:**
+
+```bash
+# Terminal 1: コンテナ起動（bind mount 付き）
+docker run --rm -p 8080:80 \
+  -v "$PWD/index.html:/usr/share/nginx/html/index.html:ro" \
+  nginx:alpine
+
+# Terminal 2: 別ターミナルで docker exec
+docker ps
+# => container-id を取得
+
+docker exec <container-id> ls -la /usr/share/nginx/html/index.html
+# Output:
+# -rw-r--r-- 1 root root 1024 Mar 1 12:34 /usr/share/nginx/html/index.html
+# ↑ これはホスト側の index.html と同じファイル
+
+# Terminal 1 または 2: ホスト側でファイルを編集
+vi index.html
+# ファイル内容を変更
+
+# Terminal 2: 再度 docker exec で確認
+docker exec <container-id> cat /usr/share/nginx/html/index.html
+# Output:
+# → 編集後の内容が表示される（mount されているから）
+```
+
+**ポイント:**
+
+- `docker exec` は「実行中のコンテナ」に対して実行
+- bind mount は「同じファイルを見ている」状態なので、ホスト側での変更がコンテナ側にも反映
+- `docker exec` で見る内容も「修正済み内容」
+
+**対比:**
+
+| やり方 | 結果 |
+|-------|------|
+| ブラウザで `localhost:8080` にアクセス | 配信されている HTML（nginx が返す） |
+| `docker exec cat /usr/share/nginx/html/index.html` | ファイルの raw 内容 |
+| `docker logs <container-id>` | nginx の access log や error |
+
+これらを使い分けることで、「ホスト側のファイル変更が、どのように伝わるか」を End-to-End で検証できるのが Docker 学習の醍醐味。

@@ -100,6 +100,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Use `docker exec <container-id> ls /path` to see container directories. Use `docker inspect` for mount info, `docker stat` for file metadata
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Does `docker exec` require the container to be running? And what does a bind-mounted file look like when viewed with `docker exec`?
+  - A. Exactly. `docker exec` only works on running containers. Bind-mounted files show the current host-side content (changes propagate immediately because they are the same file)
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

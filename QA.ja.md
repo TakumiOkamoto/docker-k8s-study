@@ -100,6 +100,10 @@
   - A. `docker exec <container-id> ls /path` でコンテナ内の directory を見る。`docker inspect` で mount 情報、`docker stat` で file metadata を確認
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `docker exec` するには、コンテナが running していないといけない？bind mount されているファイルは `docker exec` で見るとどう表示される？
+  - A. その通り。`docker exec` は running container に対してのみ実行可能。bind mount されたファイルは、ホスト側の現在の内容がそのまま見える（mount されているから変更が反映）
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？
