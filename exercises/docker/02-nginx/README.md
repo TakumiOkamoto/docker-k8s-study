@@ -458,3 +458,44 @@ The mental model is:
   - see the source images
 
 If these six become natural, you can already handle a large part of basic Docker work.
+
+### Q. In `docker images`, does `In Use` or `U` mean that the image is currently running?
+
+A. Not necessarily. It is safer to read `In Use` as: some container still references that image.
+
+That means:
+
+- it may be used by a running container
+- or it may still be referenced by a stopped container
+
+On this Mac, `hello-world` was marked `In Use`, but it was not running. The check showed this:
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+```
+
+Result:
+
+- there were three `hello-world` containers left
+- all were `Exited (0)`
+- so the image was still referenced, but not actively running
+
+By contrast, `nginx:alpine` had one container in `Up` state, so that image really was in active use by a running container.
+
+The practical reading pattern is:
+
+- `docker images`
+  - broad view of whether an image is in use
+- `docker ps`
+  - check what is running right now
+- `docker ps -a`
+  - check which running or stopped containers still reference the image
+
+If you want to clean up stopped `hello-world` containers, for example:
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+docker rm <container-id>
+```
+
+If there are several, you can remove them after confirming the targets.

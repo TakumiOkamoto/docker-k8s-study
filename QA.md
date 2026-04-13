@@ -70,6 +70,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Start with `docker logs`, `docker inspect`, `docker exec`, `docker images`, `docker run`, and `docker stop` as the most common basics
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Does `In Use` in `docker images` mean the image is running right now?
+  - A. Not necessarily; an image can be marked in use because a stopped container still references it
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

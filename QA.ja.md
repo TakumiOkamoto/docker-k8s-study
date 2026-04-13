@@ -70,6 +70,10 @@
   - A. まずは `docker logs`、`docker inspect`、`docker exec`、`docker images`、`docker run`、`docker stop` あたりが基本
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `docker images` の `In Use` は「今動いている」という意味？
+  - A. 必ずしも違う。起動中 container だけでなく、停止済み container が image を参照していても `In Use` になる
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

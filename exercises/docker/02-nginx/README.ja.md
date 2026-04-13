@@ -460,3 +460,44 @@ docker run ...
   - 元になる image を見る
 
 この 6 個をまず自然に使えるようになると、Docker の基本操作はかなり前に進む。
+
+### Q. `docker images` の `In Use` や `U` は、「その image が今動いている」という意味？
+
+A. 必ずしもそうではない。`In Use` は、その image を参照している container が存在する、という意味で読むのが安全。
+
+つまり:
+
+- 起動中 container が使っている場合もある
+- 停止済み container が残っていて使っている場合もある
+
+この Mac では実際に、`hello-world` は `In Use` だが起動中ではなかった。確認結果はこうだった。
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+```
+
+結果:
+
+- `hello-world` の container が 3 つ残っている
+- すべて `Exited (0)`
+- つまり「実行中ではないが、停止済み container が image を参照している」状態
+
+一方で `nginx:alpine` は起動中 container が 1 つあり、こちらは本当に動いていた。
+
+確認の考え方:
+
+- `docker images`
+  - image が使われているかの大まかな把握
+- `docker ps`
+  - 今まさに起動中か確認
+- `docker ps -a`
+  - 停止済みも含め、どの container が参照しているか確認
+
+もし停止済みの `hello-world` container を消したければ、たとえば次を使う。
+
+```bash
+docker ps -a --filter ancestor=hello-world:latest
+docker rm <container-id>
+```
+
+複数あるなら、対象を確認したうえでまとめて削除してもよい。
