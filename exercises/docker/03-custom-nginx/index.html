@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 03 - Custom nginx Image</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: "Courier New", monospace;
+        }
+        .command {
+            background: #263238;
+            color: #aed581;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercise 03: Custom nginx Image</h1>
+        
+        <div class="info">
+            <strong>このページは、自分で build した nginx image から配信されています</strong><br>
+            演習 02 では bind mount で既成イメージを使いましたが、ここでは Dockerfile を書いて独自イメージを build しました。
+        </div>
+
+        <h2>演習の流れ</h2>
+        <ol>
+            <li>Dockerfile を書く（既成の <code>nginx:alpine</code> をベースに、<code>index.html</code> を追加）</li>
+            <li><code>docker build</code> でイメージを build</li>
+            <li>build したイメージで <code>docker run</code> を実行</li>
+        </ol>
+
+        <h2>使ったコマンド</h2>
+        <div class="command">docker build -t my-custom-nginx:latest .</div>
+        <div class="command">docker run --rm -p 8080:80 my-custom-nginx:latest</div>
+
+        <h2>Dockerfile の内容</h2>
+        <pre><code>FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/</code></pre>
+
+        <h2>このやり方の特徴</h2>
+        <ul>
+            <li><strong>ファイル固定化</strong>: イメージのビルド時に、<code>index.html</code> が image に組み込まれる</li>
+            <li><strong>再現性</strong>: 別マシンで同じイメージを pull すれば、同じコンテンツが配信される</li>
+            <li><strong>配布可能</strong>: <code>docker push</code> で image をレジストリにシェアできる</li>
+            <li><strong>本番向き</strong>: 開発環境と本番環境で同じ image を使える</li>
+        </ul>
+
+        <h2>演習 02 との違い</h2>
+        <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <th>項目</th>
+                <th>演習 02 (bind mount)</th>
+                <th>演習 03 (build)</th>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td>既成の <code>nginx:alpine</code> をそのまま</td>
+                <td>独自に build した <code>my-custom-nginx</code></td>
+            </tr>
+            <tr>
+                <td>ファイル</td>
+                <td>ホスト側のファイルを参照（動的）</td>
+                <td>image に組み込まれている（静的）</td>
+            </tr>
+            <tr>
+                <td>ファイル変更時</td>
+                <td>即座に反映</td>
+                <td>build し直す必要がある</td>
+            </tr>
+            <tr>
+                <td>用途</td>
+                <td>開発環境</td>
+                <td>本番環境・チーム共有</td>
+            </tr>
+        </table>
+
+        <h2>次のステップ</h2>
+        <ul>
+            <li>Dockerfile に <code>nginx.conf</code> をカスタマイズして COPY する</li>
+            <li>複数ファイル（CSS、JS など）を COPY する</li>
+            <li>健康チェック（HEALTHCHECK）を追加する</li>
+            <li>image を Docker Hub にシェアする</li>
+        </ul>
+    </div>
+</body>
+</html>
