@@ -78,6 +78,10 @@
   - A. `docker ps -a --filter ancestor=hello-world:latest` で確認してから、`docker rm <container-id>` か `docker rm $(docker ps -aq --filter ancestor=hello-world:latest)` を使う
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `--filter ancestor=` って何？ どう読む？
+  - A. Docker フィルターで「このイメージから作られた container」を絞り込む。`ancestor` は「祖先」という意味の英語で、イメージが container の親世代にあたるから
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

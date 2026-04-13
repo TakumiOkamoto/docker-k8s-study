@@ -550,3 +550,42 @@ Note:
 
 - `docker rm` is for stopped containers
 - if a container is still running, stop it first with `docker stop <name-or-id>`
+
+### Q. What does `--filter ancestor=` mean? How is it pronounced?
+
+A. It is a Docker filter option that narrows down containers created from a specific image.
+
+Pronunciation and meaning:
+
+- `ancestor` is an English word meaning "parent" or "predecessor"
+- In Japanese context, you would read it as "アンセスター"
+
+The relationship logic:
+
+- Image = a template or blueprint (parent)
+- Container = a running instance created from an image (child)
+- Therefore, the image is the "ancestor" of the container
+
+Examples:
+
+```bash
+# Show all containers created from the hello-world image
+docker ps -a --filter ancestor=hello-world:latest
+
+# Show all running containers created from nginx:alpine
+docker ps -a --filter ancestor=nginx:alpine
+```
+
+In this exercise, `--filter ancestor=hello-world:latest` is used to narrow down "all containers made from hello-world" so you can identify which containers to remove.
+
+Combining filters:
+
+- `--filter ancestor=<image>` alone
+  - all containers from that image (both running and stopped)
+- `--filter "ancestor=<image>" --filter "status=exited"`
+  - only stopped containers from that image
+
+Learning takeaways:
+
+- helps clarify the parent-child relationship between images and containers
+- a way to reverse-lookup containers by their source image name

@@ -552,3 +552,42 @@ docker images
 
 - `docker rm` は停止済み container に使う
 - 起動中なら先に `docker stop <name-or-id>` が必要
+
+### Q. `--filter ancestor=` って何？ どう読む？
+
+A. Docker フィルターオプションの 1 つで、「このイメージから作られた container」を絞り込む。
+
+読み方:
+
+- `ancestor` = 「祖先」「親」という意味の英語
+- 日本語では「アンセスター」と読む
+
+使い方を整理すると:
+
+- イメージ = container のテンプレート（親）
+- container = イメージから作られた実体（子）
+- つまり、イメージは container の「祖先」
+
+例:
+
+```bash
+# hello-world イメージから作られた container をすべて表示
+docker ps -a --filter ancestor=hello-world:latest
+
+# nginx:alpine イメージから作られた起動中 container をすべて表示
+docker ps -a --filter ancestor=nginx:alpine
+```
+
+この演習では、`--filter ancestor=hello-world:latest` で「hello-world から作られた container」を絞り込んで、どの container を削除するか指定するときに使っている。
+
+他の filter との組み合わせ:
+
+- `--filter ancestor=<image>` 単独
+  - そのイメージから作られたすべての container（起動中・停止済み）
+- `--filter "ancestor=<image>" --filter "status=exited"`
+  - そのイメージから作られた停止済み container だけ
+
+学習上のポイント:
+
+- image と container の親子関係を理解する取っ掛かり
+- filter 的には「image by name」で container を逆引きする手段

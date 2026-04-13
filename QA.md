@@ -78,6 +78,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. First confirm them with `docker ps -a --filter ancestor=hello-world:latest`, then use either `docker rm <container-id>` or `docker rm $(docker ps -aq --filter ancestor=hello-world:latest)`
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. What does `--filter ancestor=` mean? How is it pronounced?
+  - A. A Docker filter that narrows down to containers created from a specific image. `ancestor` means "parent" or "predecessor"; the image is the ancestor generation of the container
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?
