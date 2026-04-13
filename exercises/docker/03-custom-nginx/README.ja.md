@@ -245,6 +245,38 @@ docker build -f Dockerfile -t my-custom-nginx:latest .
 - `.` は「コマンド実行場所」だけでなく「Docker に渡すファイル範囲」の指定
 - `COPY` エラーは context の取り違えで起きることが多い
 
+### Q. `docker build -t my-custom-nginx:latest -f ../Dockerfile` で `requires 1 argument` が出るのはなぜ？
+
+A. `-f` は Dockerfile の場所を指定するだけで、**build context 引数**（PATH | URL | -）は別で必須だから。
+
+あなたのコマンドは最後の context が無いため、`docker buildx build requires 1 argument` になる。
+
+誤り（context 不足）:
+
+```bash
+docker build -t my-custom-nginx:latest -f ../Dockerfile
+```
+
+正しい形（最後に context を付ける）:
+
+```bash
+# Dockerfile は ../Dockerfile、context は現在ディレクトリ
+docker build -t my-custom-nginx:latest -f ../Dockerfile .
+
+# Dockerfile も context も 1つ上のディレクトリ
+docker build -t my-custom-nginx:latest -f ../Dockerfile ..
+```
+
+ルールとして覚える形:
+
+```bash
+docker build [OPTIONS] <CONTEXT>
+```
+
+- `-f` は `<CONTEXT>` の代わりにはならない
+- `COPY` が参照できるのは `<CONTEXT>` 内だけ
+- まず `pwd` で現在地を確認してから build すると事故が減る
+
 ### Q. `docker build` と `docker run` はどう違う？
 
 A. 大きく違う。

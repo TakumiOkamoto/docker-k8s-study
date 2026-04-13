@@ -94,6 +94,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. It is the current directory used as build context, i.e., the file scope sent to Docker; `COPY` can only read within that scope
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. Why does `docker build -t my-custom-nginx:latest -f ../Dockerfile` fail with `requires 1 argument`?
+  - A. `-f` only specifies Dockerfile path; a final build context argument (for example `.`) is still required. Use `docker build [OPTIONS] <CONTEXT>`
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

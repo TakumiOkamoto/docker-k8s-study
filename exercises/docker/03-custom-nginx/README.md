@@ -242,6 +242,38 @@ Learning points:
 - `.` is not only where you run the command, but also the file scope sent to Docker
 - Many `COPY` errors are caused by using the wrong context
 
+### Q. Why does `docker build -t my-custom-nginx:latest -f ../Dockerfile` fail with `requires 1 argument`?
+
+A. Because `-f` only points to the Dockerfile location. You still must pass a separate **build context** argument (PATH | URL | -).
+
+Your command is missing the final context, so buildx reports `requires 1 argument`.
+
+Incorrect (missing context):
+
+```bash
+docker build -t my-custom-nginx:latest -f ../Dockerfile
+```
+
+Correct forms (add context at the end):
+
+```bash
+# Dockerfile is ../Dockerfile, context is current directory
+docker build -t my-custom-nginx:latest -f ../Dockerfile .
+
+# Dockerfile and context are both parent directory
+docker build -t my-custom-nginx:latest -f ../Dockerfile ..
+```
+
+Rule to remember:
+
+```bash
+docker build [OPTIONS] <CONTEXT>
+```
+
+- `-f` does not replace `<CONTEXT>`
+- `COPY` can only read files inside `<CONTEXT>`
+- Run `pwd` first to verify your current location before building
+
 ### Q. What's the difference between `docker build` and `docker run`?
 
 A. They are fundamentally different stages:

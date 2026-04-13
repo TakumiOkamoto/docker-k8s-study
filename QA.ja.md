@@ -94,6 +94,10 @@
   - A. 現在ディレクトリを指す build context。Docker に送るファイル範囲を表し、`COPY` はその範囲内しか参照できない
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. `docker build -t my-custom-nginx:latest -f ../Dockerfile` で `requires 1 argument` になるのはなぜ？
+  - A. `-f` は Dockerfile の場所指定のみで、最後の build context 引数（例: `.`）が必須。`docker build [OPTIONS] <CONTEXT>` の形にする必要がある
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み
