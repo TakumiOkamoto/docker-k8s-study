@@ -538,3 +538,68 @@ docker run --rm -p 8080:80 <username>/my-custom-nginx:latest
 すると、初回は `<username>/my-custom-nginx:latest` が pull され、同じ構成が再現される。
 
 この演習ではここまでやる必要はないが、「image の共有」という Docker の利点は、実は `docker build` と `docker push / pull` で成り立っている。
+
+### Q. Build 時にファイルの権限（permission）も制御できる？オリジナルの情報をコピーするだけ？
+
+A. Build 時に権限を制御できます。オリジナルの情報をコピーするだけではありません。
+
+**デフォルト動作**:
+
+`COPY` でホストからコンテナにファイルが複製される時、ファイルはコンテナ内で `root:root` の所有権と `644` のパーミッションで置かれます（ディレクトリは `755`）。
+
+```dockerfile
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/
+# index.html → コンテナ内では root:root, 644 になる
+```
+
+**方法 1: `--chown` フラグで所有権を制御**
+
+```dockerfile
+FROM nginx:alpine
+
+# nginx ユーザの所有権に変更
+COPY --chown=nginx:nginx index.html /usr/share/nginx/html/
+
+# または特定 UID:GID
+COPY --chown=1000:1000 index.html /usr/share/nginx/html/
+```
+
+**方法 2: `RUN chmod` / `RUN chown` で権限を設定**
+
+```dockerfile
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/
+
+# パーミッション変更
+RUN chmod 755 /usr/share/nginx/html/index.html
+
+# 所有権変更（まずユーザが存在することが必要）
+RUN chown www-data:www-data /usr/share/nginx/html/index.html
+
+# 両方を一度に
+RUN chown www-data:www-data /usr/share/nginx/html/index.html \
+    && chmod 755 /usr/share/nginx/html/index.html
+```
+
+**実践例: nginx image での使い方**
+
+```dockerfile
+FROM nginx:alpine
+
+# nginx イメージは nginx:docker ユーザで起動するので、
+# ファイルを nginx が読めるように設定
+COPY --chown=nginx:nginx index.html /usr/share/nginx/html/
+COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
+
+# または build 後に RUN chmod
+COPY index.html /usr/share/nginx/html/
+RUN chmod 644 /usr/share/nginx/html/index.html
+```
+
+**重要ポイント**:
+
+- `COPY --chown` はより効率的（layer が1つで済む）
+- `RUN chmod / RUN chown` は追加 layer を作る
+- ホスト側のパーミッション情報は保持されない
+- コンテナ内では独立した権限スキーム（UID/GID の数値）を使う

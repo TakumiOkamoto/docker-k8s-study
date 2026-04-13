@@ -513,6 +513,71 @@ Convention:
 - `latest` = newest version (development)
 - `v1.0`, `v1.1` ... = release versions (pinned by tag)
 
+### Q. Can I control file permissions during build, or only copy the original permissions?
+
+A. You can control file permissions during build. You are not limited to copying original permissions.
+
+**Default behavior**:
+
+When `COPY` transfers files from host to container, they are placed with `root:root` ownership and `644` permissions (directories get `755`) by default.
+
+```dockerfile
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/
+# index.html → in container: root:root, 644
+```
+
+**Method 1: Use `--chown` flag to control ownership**
+
+```dockerfile
+FROM nginx:alpine
+
+# Change to nginx user ownership
+COPY --chown=nginx:nginx index.html /usr/share/nginx/html/
+
+# Or use specific UID:GID
+COPY --chown=1000:1000 index.html /usr/share/nginx/html/
+```
+
+**Method 2: Use `RUN chmod` / `RUN chown` to set permissions**
+
+```dockerfile
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/
+
+# Change permissions
+RUN chmod 755 /usr/share/nginx/html/index.html
+
+# Change ownership (requires user to exist)
+RUN chown www-data:www-data /usr/share/nginx/html/index.html
+
+# Both in one layer
+RUN chown www-data:www-data /usr/share/nginx/html/index.html \
+    && chmod 755 /usr/share/nginx/html/index.html
+```
+
+**Practical example: nginx image workflow**
+
+```dockerfile
+FROM nginx:alpine
+
+# nginx image runs as nginx:docker user,
+# so set files to be readable by nginx
+COPY --chown=nginx:nginx index.html /usr/share/nginx/html/
+COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
+
+# Or use RUN chmod after copying
+COPY index.html /usr/share/nginx/html/
+RUN chmod 644 /usr/share/nginx/html/index.html
+```
+
+**Key points**:
+
+- `COPY --chown` is more efficient (single layer)
+- `RUN chmod / RUN chown` create additional layers
+- Host file permissions are not preserved into the container
+- Container uses independent permission scheme (numeric UID/GID)
+
 ### Q. Can I upload a built image to Docker Hub?
 
 A. Yes, using `docker push`:

@@ -114,6 +114,10 @@
   - A. できる。`COPY <src> <dest>` を複数書けば、1つの context から複数の配置先へ展開できる（これが標準）
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. Build 時にファイルの権限（permission）も制御できる？オリジナルの情報をコピーするだけ？
+  - A. 制御できる。`COPY --chown` で所有権、`RUN chmod`/`RUN chown` で権限を設定可能。ホスト側の権限は自動では保持されない
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

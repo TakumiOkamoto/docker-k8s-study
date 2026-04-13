@@ -114,6 +114,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Yes. Use multiple `COPY <src> <dest>` lines; one context with multiple destination paths is the standard Dockerfile pattern
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. Can I control file permissions during build, or only copy the original permissions?
+  - A. You can control permissions via `COPY --chown` (for ownership) or `RUN chmod`/`RUN chown` (for permissions); host permissions are not automatically preserved
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design
