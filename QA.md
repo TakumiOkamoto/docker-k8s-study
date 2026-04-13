@@ -46,6 +46,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. On Docker Desktop for macOS, Docker Desktop uses its own Linux VM for Linux containers, and CPU, memory, and disk are managed through Docker Desktop resource settings
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Is `-v` only for one file? What should I do when HTML depends on CSS and other files?
+  - A. `-v` can mount either a file or a directory, and for multi-asset static content you typically mount the whole content directory
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

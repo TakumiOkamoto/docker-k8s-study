@@ -228,3 +228,27 @@ macOS terminal
 - 必要なら利用者が Docker Desktop の Resources 設定で CPU / memory / swap / disk を調整する
 
 この Mac でも `docker context ls` に `desktop-linux` が見えているので、Docker Desktop 管理の Linux 環境を使っていると分かる。
+
+### Q. `-v` は 1 ファイルだけ渡すためのもの？ HTML + CSS のように複数ファイルがある時は？
+
+A. `-v` は「ファイル」でも「ディレクトリ」でも mount できる。いまの演習コマンドは file mount なので `index.html` だけを差し込んでいる。
+
+そのため、`index.html` が `style.css` や `app.js` を参照している場合は、次のどちらかが必要。
+
+- CSS/JS も個別に file mount する
+- 配信ディレクトリごと mount する
+
+静的サイトでは、通常はディレクトリごと mount する方が自然。
+
+例:
+
+```bash
+docker run --rm -p 8080:80 -v "$PWD:/usr/share/nginx/html:ro" nginx:alpine
+```
+
+この形なら、`index.html` からの相対参照 (`./style.css` など) もそのまま解決される。
+
+整理すると:
+
+- file mount は「1 ファイルだけ差し替えたい」とき向き
+- directory mount は「HTML/CSS/JS まとめて配信したい」とき向き

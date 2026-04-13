@@ -46,6 +46,10 @@
   - A. Docker Desktop on macOS では Linux コンテナを動かすための Docker Desktop 管理 VM が使われ、CPU / memory / disk は Docker Desktop の Resources 設定で管理する
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. `-v` は 1 ファイルだけ渡すもの？ HTML + CSS みたいに複数ファイルならどうする？
+  - A. `-v` は file でも directory でも mount でき、複数アセットを配信するなら配信ディレクトリごと mount するのが基本
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

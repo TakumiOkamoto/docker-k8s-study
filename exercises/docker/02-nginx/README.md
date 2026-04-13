@@ -228,3 +228,27 @@ About sizing:
 - the user can adjust CPU, memory, swap, and disk in Docker Desktop Resources settings
 
 On this Mac, `docker context ls` shows `desktop-linux`, which indicates the Docker Desktop managed Linux environment is in use.
+
+### Q. Is `-v` only for passing one file? What if HTML uses CSS and other files?
+
+A. `-v` can mount either a single file or a whole directory. In this exercise, the command uses a file mount, so only `index.html` is injected.
+
+If `index.html` references `style.css` or `app.js`, you need one of these approaches:
+
+- mount each additional file explicitly
+- mount the entire content directory
+
+For static websites, mounting the whole directory is usually simpler.
+
+Example:
+
+```bash
+docker run --rm -p 8080:80 -v "$PWD:/usr/share/nginx/html:ro" nginx:alpine
+```
+
+With this pattern, relative paths from `index.html` (such as `./style.css`) resolve naturally.
+
+In short:
+
+- file mount is good when you want to replace exactly one file
+- directory mount is better when you want to serve multiple related assets together
