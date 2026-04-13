@@ -65,6 +65,16 @@ Example:
 
 ## What Helps A Lot
 
+### Keep a short decision log
+
+After making an important choice, add a one-line note about what was rejected and why.
+
+Example:
+
+- "Chose staging directory approach; skipped BuildKit named contexts because too complex for current scope."
+
+This helps you remember why something is the way it is, and avoids re-explaining it in later AI sessions.
+
 - pasting command output
 - asking for comparisons
 - asking which layer should be inspected next

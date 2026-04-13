@@ -24,6 +24,7 @@
 - understanding, not only progress, should remain documented
 - questions should not get scattered and lost
 - a new AI session should resume with a minimal opening message
+- for important decisions, record not only what was chosen but also what was rejected and why (decision log)
 
 ## Files The AI Should Check Every Time
 
@@ -40,6 +41,12 @@
 - do not make the user repeat the same background
 - preserve important assumptions in the repository
 - keep support quality stable across sessions
+
+## Keeping The Collaboration Lean
+
+- Review repository rules and documents weekly, deleting or updating anything that is stale or unnecessary
+- Files that grow too large tend to stop being read by future AI sessions; keep them concise
+- Good times for review: before moving to a new exercise phase, or when writing a weekly journal entry
 
 ## Maturity Level Of This Collaboration
 

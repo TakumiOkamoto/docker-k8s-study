@@ -81,6 +81,19 @@ but also:
 - where it tends to break
 - how to restore it
 
+### 8. Validate understanding with small reproduction tests
+
+"Feeling like you understand" and "being able to reproduce it" are not the same thing.
+
+Practical habits:
+
+- After each exercise, add a small verification command to the `README` under "Next Steps"
+- Try to reproduce errors intentionally, then fix them yourself
+- Before asking AI to explain a command's output, first write down your own prediction
+- Revisit Q&A entries and try to explain the answers without looking
+
+A simple benchmark: after each exercise, can you write at least one Q&A answer from memory?
+
 ## How This Connects To This Repository
 
 This repository turns those ideas into practice:
