@@ -44,6 +44,48 @@ ls -l index.html
 - `--rm`
   - The container is removed after exit
 
+## Mastery Checklist
+
+Use this self-assessment to know whether you are ready for Exercise 03. ✅ all of these, and you can proceed.
+
+- [ ] **You can run it**
+  - The `docker run --rm -p 8080:80 -v ...` command executed successfully
+  - No errors in the terminal
+
+- [ ] **You can see it in the browser**
+  - `localhost:8080` displays your `index.html` content
+  - All expected styles, text, and port numbers are visible
+
+- [ ] **You can explain the three layers**
+  - Describe the role of "host port 8080"
+  - Describe the role of "container port 80"
+  - Explain how Docker's port forwarding connects them
+
+- [ ] **You understand bind mounts**
+  - Recognize that `-v` means "show a host file inside the container"
+  - Explain the `host-path:container-path` mapping
+  - Know that `:ro` means read-only
+
+- [ ] **You can troubleshoot**
+  - When a page doesn't open, you know where to look
+  - You confirmed with `docker inspect` where files are mounted (optional but good)
+  - You explored inside a container with `docker exec` (optional but good)
+
+- [ ] **You know the Docker commands**
+  - `docker ps` shows running containers
+  - `docker logs` shows container output
+  - `docker inspect` shows mount and port details
+  - `docker exec` lets you see inside the container
+
+- [ ] **You understand the Turning Point to 03**
+  - Exercise 02 = pre-built image + bind mount = development-oriented
+  - Exercise 03 = build custom Dockerfile = production-oriented
+  - You can explain that difference
+
+All ✅? Proceed to Exercise 03.
+
+Some ❌? Re-read those Q&A sections or try the commands again.
+
 ## Support Perspective
 
 Questions this exercise should answer:
