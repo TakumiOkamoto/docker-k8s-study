@@ -98,6 +98,10 @@
   - A. `-f` は Dockerfile の場所指定のみで、最後の build context 引数（例: `.`）が必須。`docker build [OPTIONS] <CONTEXT>` の形にする必要がある
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. `COPY index.html ...` で `"/index.html": not found` になるのはなぜ？
+  - A. build context に `index.html` が含まれていないため。`-f` で Dockerfile を読めても、`COPY` は context 内しか参照できない
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

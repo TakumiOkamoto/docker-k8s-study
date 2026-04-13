@@ -274,6 +274,47 @@ docker build [OPTIONS] <CONTEXT>
 - `COPY` can only read files inside `<CONTEXT>`
 - Run `pwd` first to verify your current location before building
 
+### Q. Why does `COPY index.html ...` fail with `"/index.html": not found`?
+
+A. Because `index.html` is not present inside the selected build context.
+
+How to read your log:
+
+- `transferring context: 2B`
+  - context is almost empty (almost no files were sent to Docker)
+- `COPY index.html ...`
+  - Dockerfile asks Docker to copy `index.html`
+- `"/index.html": not found`
+  - that file does not exist in the context
+
+So `-f ../Dockerfile` found the Dockerfile path, but the final `.` context did not include `index.html`.
+
+Recommended fix:
+
+```bash
+# move into the exercise directory
+cd exercises/docker/03-custom-nginx
+
+# Dockerfile and context are both current directory
+docker build -t my-custom-nginx:latest .
+```
+
+Or keep current directory and pass context explicitly:
+
+```bash
+# use parent Dockerfile, but set context to 03-custom-nginx
+docker build -t my-custom-nginx:latest -f ../Dockerfile ../03-custom-nginx
+```
+
+Verification before build:
+
+```bash
+pwd
+ls -l
+```
+
+Confirm `index.html` is inside the chosen context before running build.
+
 ### Q. What's the difference between `docker build` and `docker run`?
 
 A. They are fundamentally different stages:

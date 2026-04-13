@@ -98,6 +98,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. `-f` only specifies Dockerfile path; a final build context argument (for example `.`) is still required. Use `docker build [OPTIONS] <CONTEXT>`
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. Why does `COPY index.html ...` fail with `"/index.html": not found`?
+  - A. Because `index.html` is not in the selected build context. `-f` finds Dockerfile, but `COPY` can only read files inside context
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

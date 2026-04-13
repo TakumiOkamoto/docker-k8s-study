@@ -277,6 +277,47 @@ docker build [OPTIONS] <CONTEXT>
 - `COPY` が参照できるのは `<CONTEXT>` 内だけ
 - まず `pwd` で現在地を確認してから build すると事故が減る
 
+### Q. `COPY index.html ...` で `"/index.html": not found` が出るのはなぜ？
+
+A. build context の中に `index.html` が無い状態で build しているため。
+
+今回のログの読み方:
+
+- `transferring context: 2B`
+  - context がほぼ空（Docker に送られたファイルがほぼ無い）
+- `COPY index.html ...`
+  - Dockerfile は `index.html` を探す
+- `"/index.html": not found`
+  - context 内に `index.html` が存在しない
+
+つまり、`-f ../Dockerfile` で Dockerfile の場所は読めているが、最後の `.` が指す context が `index.html` を含んでいない。
+
+修正方法（推奨）:
+
+```bash
+# 03-custom-nginx ディレクトリへ移動
+cd exercises/docker/03-custom-nginx
+
+# Dockerfile も context も現在ディレクトリ
+docker build -t my-custom-nginx:latest .
+```
+
+あるいは、現在地を変えずに context を明示:
+
+```bash
+# 1つ上の Dockerfile を使い、context を 03-custom-nginx に指定
+docker build -t my-custom-nginx:latest -f ../Dockerfile ../03-custom-nginx
+```
+
+確認コマンド:
+
+```bash
+pwd
+ls -l
+```
+
+`index.html` が context に含まれていることを確認してから build する。
+
 ### Q. `docker build` と `docker run` はどう違う？
 
 A. 大きく違う。
