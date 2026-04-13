@@ -86,6 +86,10 @@
   - A. その理解で正しい。`nginx:alpine` は既成の image で、Dockerfile で nginx インストール → ポート 80 → `/usr/share/nginx/html/` 配信対象のように既に設定された出来上がった state で public されている
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. 別のディレクトリの `index.html` をトップにしたい nginx container を作りたい場合はどうする？
+  - A. 2 つの方法がある：1) bind mount で差し替える（開発向き、動的反映）2) Dockerfile を書いて build する（本番向き、image に固定化）
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？

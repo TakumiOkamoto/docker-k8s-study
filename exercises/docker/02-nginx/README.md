@@ -632,3 +632,68 @@ Learning insight:
 - Pre-built images are published in an already-configured state
 - Users specify `-p` and `-v` options to adapt the image to their use case
 - Understanding "what is nginx:alpine" and "what does port 80 mean" upfront makes the purpose of each Docker option clearer
+
+### Q. What if I want to create an nginx container that serves index.html from a different directory?
+
+A. There are two main approaches.
+
+**Method 1: Bind Mount (for development)**
+
+Mount a different directory:
+
+```bash
+docker run --rm -p 8080:80 -v "/path/to/other/dir:/usr/share/nginx/html:ro" nginx:alpine
+```
+
+Characteristics:
+
+- Uses the pre-built `nginx:alpine` as-is
+- Replaces only the served files (or directory) from the host side
+- Changes to host files immediately reflect in the running container
+- Good for development and experimentation
+
+**Method 2: Write your own Dockerfile and build a custom image (for production)**
+
+Create a `Dockerfile`:
+
+```dockerfile
+FROM nginx:alpine
+
+# Copy your own HTML files into the container's serving directory
+COPY index.html /usr/share/nginx/html/
+
+# Copy related assets if needed
+COPY css/ /usr/share/nginx/html/css/
+COPY js/ /usr/share/nginx/html/js/
+```
+
+Build the image:
+
+```bash
+docker build -t my-nginx:latest .
+```
+
+Run that image:
+
+```bash
+docker run --rm -p 8080:80 my-nginx:latest
+```
+
+Characteristics:
+
+- Creates a new image based on your configuration
+- Uses `docker build` to generate the image
+- Once built, the files are embedded and fixed within the image
+- Other machines can pull the same image and reproduce the identical environment
+- Ideal for production and team sharing
+
+**When to use each:**
+
+| Method | Purpose | Overhead | Reproducibility |
+|--------|---------|----------|-----------------|
+| Bind mount | Dev / quick testing | Low | Medium (depends on file location) |
+| Dockerfile + build | Production / team sharing | High (write Dockerfile) | High (self-contained image) |
+
+**Next step context:**
+
+This exercise so far has used bind mount with `nginx:alpine` to support dynamic file changes during development. When the goal shifts to "create a production web server," the standard approach is to write a Dockerfile and build an independent image.

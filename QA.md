@@ -86,6 +86,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Your understanding is correct. `nginx:alpine` is a pre-built image that already has nginx installed and configured (via Dockerfile) to listen on port 80 and serve from `/usr/share/nginx/html/`
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. What if I want to create an nginx container that serves index.html from a different directory?
+  - A. Two approaches: 1) bind mount to replace files dynamically (good for development), 2) write a Dockerfile and build a custom image (good for production, files embedded in image)
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

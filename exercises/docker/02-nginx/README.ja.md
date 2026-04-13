@@ -634,3 +634,68 @@ CMD ["nginx", "-g", "daemon off;"]
 - 既成 image は「そのように出来上がった状態」で public されている
 - ユーザーは「その image の使い方」に合わせて `-p` や `-v` を指定する
 - だから「nginx:alpine とは何か」と「ポート 80 とは何か」を最初から理解すると、使い方の意図が見えやすくなる
+
+### Q. 別のディレクトリの `index.html` をトップにしたい nginx container を作りたい場合はどうする？
+
+A. 大きく 2 つの方法がある。
+
+**方法 1: bind mount で差し替える（開発向き）**
+
+別のディレクトリを mount する:
+
+```bash
+docker run --rm -p 8080:80 -v "/path/to/other/dir:/usr/share/nginx/html:ro" nginx:alpine
+```
+
+特徴:
+
+- 既成の `nginx:alpine` をそのまま使う
+- 配信ファイル（またはディレクトリ）だけをホスト側から差し替える
+- ホスト側のファイルを編集すると、即座に container 側に反映される
+- 開発・試行に向いている
+
+**方法 2: 自分で Dockerfile を書いて、カスタム image を build する（本番・再利用向き）**
+
+まず `Dockerfile` を作成:
+
+```dockerfile
+FROM nginx:alpine
+
+# 自分の HTML ファイルを container の配信ディレクトリにコピー
+COPY index.html /usr/share/nginx/html/
+
+# 他のアセットもあれば
+COPY css/ /usr/share/nginx/html/css/
+COPY js/ /usr/share/nginx/html/js/
+```
+
+Image を build:
+
+```bash
+docker build -t my-nginx:latest .
+```
+
+その image を実行:
+
+```bash
+docker run --rm -p 8080:80 my-nginx:latest
+```
+
+特徴:
+
+- 自分の設定で新しい image を作る
+- `docker build` で image を作成
+- image が完成した時点で、ファイルが内部に固定化されている
+- 他のマシンでも同じ image を pull すれば、同じ環境が再現できる
+- 本番環境・チーム共有に向いている
+
+**2 つの使い分け:**
+
+| 方法 | 目的 | 手間 | 再現性 |
+|------|------|------|--------|
+| bind mount | 開発・一時試行 | 少ない | 中（ファイル位置に依存） |
+| Dockerfile + build | 本番・チーム共有 | 多い（Dockerfile 作成） | 高（image 自体で完結） |
+
+**関連する次の演習:**
+
+これまで bind mount で `nginx:alpine` を使ってきたのは、「ホスト側のファイル変更を動的に反映したい」開発シーンを想定している設定。実際に「本番環境用の web サーバを作りたい」となれば、Dockerfile を書いて独立した image を build するのが標準的なアプローチになる。
