@@ -10,7 +10,7 @@ The user is already using AI well, especially by:
 
 - clarifying the AI's role
 - asking for records in the repository
-- specifying that work should continue up to just before `git push`
+- specifying the intended boundary, including whether to push
 - designing how future AI sessions should resume
 
 Conversation quality can improve even more by shaping questions slightly.
@@ -30,7 +30,8 @@ Example:
 
 - "just give me the approach"
 - "edit and commit it"
-- "stop before push"
+- "edit, commit, and push it"
+- "stop at commit for this turn (skip push)"
 
 ### 3. Say what feels unclear
 

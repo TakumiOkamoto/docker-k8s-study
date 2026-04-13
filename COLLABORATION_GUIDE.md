@@ -10,11 +10,12 @@
 - maintain Q&A
 - add helper files when useful
 - handle local commits
+- perform `git push` by default when remote/auth conditions allow
 
 ### User
 
 - run commands that require local execution
-- perform `git push`
+- explicitly tell the AI when push should be skipped or policy should change
 - share command output when needed
 
 ## What Matters In This Collaboration

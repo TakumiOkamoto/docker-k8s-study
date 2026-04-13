@@ -11,7 +11,7 @@ The user strongly trusts the AI as a study partner. The AI is expected to do mor
 - the AI should design the flow, not only answer fragments
 - the AI should keep the current stage and the next step obvious
 - progress, questions, and handoff context should be preserved in Markdown
-- the AI should handle work up to just before `git push`
+- the AI should handle work through `git push` by default, unless told to stop earlier
 
 ## Learning Style
 

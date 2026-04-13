@@ -105,3 +105,38 @@ This file records important conversations so future sessions can see:
 - `COLLABORATION_GUIDE.*`
 - `ASKING_GUIDE.*`
 - `ENGINEER_GROWTH.*`
+
+### 2026-04-13: Standardize request boundary as "update if needed, then push"
+
+#### What happened
+
+- Captured the user's pattern "update relevant Markdown if needed, then push" as a standard collaboration request style
+- Updated push responsibility to "AI performs push by default; user explicitly asks to stop when needed"
+- Extended Asking Guide templates from commit-stop phrasing to push-enabled delegation patterns
+
+#### User input
+
+- "About how I should work with AI (you): if any Markdown should be updated, do it. Push as well."
+
+#### Better possible phrasing
+
+- "Audit collaboration rules, update any necessary Markdown in both Japanese and English pairs, then run commit and push."
+- "For this turn go through push; in later turns I may request commit-only."
+
+#### Why the original input was already strong
+
+- it delegated the update decision effectively
+- it clearly specified the execution boundary (through push)
+- it requested operational improvement, not only an isolated answer
+
+#### Why the improved phrasing is even stronger
+
+- it explicitly enforces bilingual-pair updates
+- it makes boundary control (push vs no-push) repeatable per turn
+
+#### Related Files
+
+- `USER_PROFILE.*`
+- `COLLABORATION_GUIDE.*`
+- `ASKING_GUIDE.*`
+- `CONVERSATION_HISTORY.*`
