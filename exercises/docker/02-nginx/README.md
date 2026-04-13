@@ -131,3 +131,56 @@ Notes:
 - it is written as `N-G-I-N-X`
 - saying `エンジンエックス` is clearer than trying to read the letters literally
 - it is not usually pronounced like `ンギンクス` in Japanese conversation
+
+### Q. Why was the standard output different on the first run versus later runs?
+
+A. The main reason is that the first run usually has to download the `nginx:alpine` image.
+
+`docker run nginx:alpine` has two broad phases internally:
+
+1. check whether the image already exists locally
+2. start a container from that image
+
+On the first run, if `nginx:alpine` is not present locally, Docker pulls it from the registry. That is why you often see output such as:
+
+- `Unable to find image ... locally`
+- `Pulling from library/nginx`
+- layer download and extract progress
+
+On later runs, if the image is already cached locally, Docker skips the pull step. The output is then mostly just from the container startup phase.
+
+What to understand from this exercise:
+
+- the first run is often "image download + container start"
+- later runs are often just "container start"
+- the output difference usually does not mean nginx changed, only that the earlier image-fetch phase was no longer needed
+
+Useful checks:
+
+```bash
+docker images
+docker image inspect nginx:alpine
+```
+
+### Q. What does "local" mean here? Where is the image actually downloaded, and can I control it?
+
+A. On Docker Desktop for macOS, images are not usually unpacked directly into a normal host folder. They are stored inside the large disk image file used by Docker Desktop's Linux VM.
+
+On this Mac, the visible host-side file is:
+
+```text
+/Users/tapacchi/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw
+```
+
+So `nginx:alpine` is effectively stored inside that `Docker.raw` file.
+
+Control differs by environment:
+
+- Docker Desktop on macOS
+  - you normally do not choose a separate folder per image
+  - instead, you can move the overall disk image using Docker Desktop's `Disk image location` setting
+- Docker Engine on Linux
+  - you can change the daemon storage directory with `data-root`
+  - the common default is `/var/lib/docker`
+
+The important idea is that on Docker Desktop for macOS, you usually manage the location of the whole Docker disk image, not the storage path of each individual image.

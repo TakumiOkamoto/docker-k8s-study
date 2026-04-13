@@ -131,3 +131,56 @@ A. 日本語では普通に `エンジンエックス` と読めばよい。
 - 英字は `N-G-I-N-X` と書く
 - 会話では `nginx` より `エンジンエックス` と読んだほうが伝わりやすい
 - 少なくとも日本語の技術会話では `ンギンクス` のようには読まない
+
+### Q. 一度目の実行と、二度目以降の実行で標準出力が違ったのはなぜ？
+
+A. いちばん大きい理由は、初回だけ `nginx:alpine` イメージの取得が必要だから。
+
+`docker run nginx:alpine` は内部的には大きく 2 段階ある。
+
+1. ローカルにイメージがあるか確認する
+2. そのイメージからコンテナを起動する
+
+初回実行時はローカルに `nginx:alpine` がまだ無いので、Docker はレジストリからイメージを pull する。そのため標準出力や進捗表示に、次のような「取得中」の情報が出やすい。
+
+- `Unable to find image ... locally`
+- `Pulling from library/nginx`
+- layer の download / extract 進捗
+
+二度目以降は、そのイメージがローカルにキャッシュされていれば pull は不要なので、その部分の出力が消える。見えるのは主に「コンテナ起動後」の出力になる。
+
+この演習での理解ポイント:
+
+- 初回は「イメージ取得 + コンテナ起動」
+- 二度目以降は「コンテナ起動」だけになりやすい
+- 出力の違いは、コンテナの中身が変わったというより、`docker run` の前半処理が省略されたことによる
+
+確認したい時は次も見るとよい。
+
+```bash
+docker images
+docker image inspect nginx:alpine
+```
+
+### Q. ローカルって具体的にはどこにダウンロードするの？ それは制御できるの？
+
+A. Docker Desktop on macOS では、イメージは host の通常ディレクトリにそのまま展開されるわけではない。Docker Desktop が管理する Linux VM 用の大きな disk image ファイルの中に保存される。
+
+この Mac では、実ファイルとして次が見えている。
+
+```text
+/Users/tapacchi/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw
+```
+
+つまり `nginx:alpine` も、この `Docker.raw` の中に入る。
+
+制御については整理するとこうなる。
+
+- Docker Desktop on macOS
+  - 個々の image を「このフォルダへ置く」とは通常指定しない
+  - 代わりに Docker Desktop の `Disk image location` 設定で、disk image 全体の保存場所は変更できる
+- Docker Engine on Linux
+  - daemon の `data-root` で保存先ディレクトリを変更できる
+  - 典型的な既定値は `/var/lib/docker`
+
+この文脈で重要なのは、Docker Desktop on macOS では「image 単位の保存先」より「Docker Desktop 全体の仮想ディスクの置き場所」を管理する、ということ。

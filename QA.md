@@ -30,6 +30,18 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. `Engine-X` (`エンジンエックス`)
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Why was the standard output different on the first run versus later runs?
+  - A. The first run often pulls `nginx:alpine`, while later runs reuse the local cached image
+  - Details: `exercises/docker/02-nginx/README.md`
+
+- Q. What does "local" mean here, and can I control where the image is stored?
+  - A. On Docker Desktop for macOS, images live inside the Docker Desktop disk image, and you typically control the disk image location rather than a per-image folder
+  - Details: `exercises/docker/02-nginx/README.md`
+
+- Q. Is the Linux VM always created for Docker Desktop, and who decides its specs?
+  - A. On Docker Desktop for macOS, Docker Desktop uses its own Linux VM for Linux containers, and CPU, memory, and disk are managed through Docker Desktop resource settings
+  - Details: Docker Desktop settings and the `desktop-linux` context
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

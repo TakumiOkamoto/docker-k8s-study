@@ -30,6 +30,18 @@
   - A. `エンジンエックス`
   - 詳細: `exercises/docker/02-nginx/README.ja.md`
 
+- Q. 一度目の実行と、二度目以降の実行で標準出力が違ったのはなぜ？
+  - A. 初回だけ `nginx:alpine` の pull が入りやすく、二度目以降はローカルキャッシュを使うため
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
+- Q. ローカルって具体的にはどこにダウンロードするの？ それは制御できるの？
+  - A. Docker Desktop on macOS では Docker の仮想ディスク `Docker.raw` の中に保存され、個別 image の保存先ではなく disk image 全体の保存場所を設定で動かす
+  - 詳細: `exercises/docker/02-nginx/README.ja.md`
+
+- Q. Linux VM は Docker 管理用に必ず作られるの？ スペックは誰が決めるの？
+  - A. Docker Desktop on macOS では Linux コンテナを動かすための Docker Desktop 管理 VM が使われ、CPU / memory / disk は Docker Desktop の Resources 設定で管理する
+  - 詳細: Docker Desktop settings と `desktop-linux` context
+
 ## Collaboration
 
 - Q. この AI 協働の質は世間一般と比べてどの程度？
