@@ -362,3 +362,35 @@ docker ps -q
 ```
 
 ただし container が複数動いていると、どれの ID か分かりにくくなる。学習中は `docker ps` で `PORTS` や `NAMES` も一緒に見る方が安全。
+
+### Q. `IMAGE` と `NAMES` は同じ情報に見えるけど、違いは？
+
+A. 違う。たまたま似た文字列になることはあるが、意味は別。
+
+- `IMAGE`
+  - どの image から container を作ったか
+  - 例: `nginx:alpine`
+- `NAMES`
+  - その起動中 container 自体についた名前
+  - 例: `study-nginx` や Docker が自動生成した名前
+
+つまり:
+
+- `IMAGE` は「設計図・元データ」寄り
+- `NAMES` は「今動いている実体」寄り
+
+同じ image から複数 container を起動できるので、`IMAGE` は同じでも `NAMES` は別になる。
+
+例:
+
+```bash
+docker run --rm --name web-a -p 8080:80 nginx:alpine
+docker run --rm --name web-b -p 8081:80 nginx:alpine
+```
+
+この場合:
+
+- `IMAGE` は両方とも `nginx:alpine`
+- `NAMES` は `web-a` と `web-b`
+
+`docker exec` や `docker inspect` の対象を指定するときは、ふつう `NAMES` か `CONTAINER ID` を使う。`IMAGE` は「どの種類の container か」を知るための情報。

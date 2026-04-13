@@ -62,6 +62,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Use `docker ps` first, and identify the right container by its published ports or name; in many cases the name is easier to reuse than the raw ID
   - Details: `exercises/docker/02-nginx/README.md`
 
+- Q. Are `IMAGE` and `NAMES` the same kind of information?
+  - A. No. `IMAGE` tells you which image the container came from, while `NAMES` identifies the running container instance
+  - Details: `exercises/docker/02-nginx/README.md`
+
 ## Collaboration
 
 - Q. How advanced is this AI collaboration compared with typical usage?

@@ -360,3 +360,35 @@ docker ps -q
 ```
 
 But if multiple containers are running, `docker ps` is safer because it also shows names and ports.
+
+### Q. `IMAGE` and `NAMES` looked like the same kind of information. Is that correct?
+
+A. No. They can look similar in simple examples, but they mean different things.
+
+- `IMAGE`
+  - which image the container was created from
+  - example: `nginx:alpine`
+- `NAMES`
+  - the name of the running container instance itself
+  - example: `study-nginx` or an auto-generated Docker name
+
+So:
+
+- `IMAGE` is closer to the blueprint or source
+- `NAMES` is the identity of the running instance
+
+You can start multiple containers from the same image, so `IMAGE` can be the same while `NAMES` differs.
+
+Example:
+
+```bash
+docker run --rm --name web-a -p 8080:80 nginx:alpine
+docker run --rm --name web-b -p 8081:80 nginx:alpine
+```
+
+In that case:
+
+- `IMAGE` is `nginx:alpine` for both
+- `NAMES` is `web-a` and `web-b`
+
+When targeting a specific running container with `docker exec` or `docker inspect`, you normally use `NAMES` or `CONTAINER ID`. `IMAGE` is mainly there to tell you what kind of container it is.
