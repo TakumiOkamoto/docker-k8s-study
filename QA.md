@@ -152,6 +152,12 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. It is well above average casual usage and is closer to a mature ongoing work-partner pattern
   - Details: `COLLABORATION_GUIDE.md`
 
+### `advanced` (Other Advanced Topics)
+
+- Q. Is it possible to run a Docker container inside another Docker container?
+  - A. Yes. There are two main methods: "DooD (Docker out of Docker)" which mounts the host's `docker.sock`, and "DinD (Docker in Docker)" which runs a fully isolated daemon inside a privileged container. This DinD concept is the exact core design behind the upcoming `kind` (Kubernetes in Docker) tool.
+  - Details: To be experienced practically in the next Kubernetes fundamentals phase.
+
 ## Kubernetes
 
 - Q. What is the difference between `k8s` and `k3s`? Should I know it as a support engineer?

@@ -152,6 +152,12 @@
   - A. 一般的な単発利用よりかなり高く、継続的な作業パートナー運用としてはかなり成熟している
   - 詳細: `COLLABORATION_GUIDE.ja.md`
 
+### `advanced` (その他応用)
+
+- Q. Docker コンテナ（イメージ）の中で、さらに別の Docker コンテナを動かすことはできる？
+  - A. 可能です。主に2つの方法があります。1つは親の `docker.sock` をマウントして親に作らせる「DooD (Docker out of Docker)」。もう1つはコンテナ内で完全に独立したデーモンを動かす特権的な「DinD (Docker in Docker)」です。この技術は、これから学ぶ `kind` (Kubernetes in Docker) のコア設計そのものです。
+  - 詳細: 次の Kubernetes 基礎 (`kind`) の学習で体感します。
+
 ## Kubernetes
 
 - Q. Kubernetes (`k8s`) と `k3s` の違いは何？ サポートエンジニアとして知っておくべき？
