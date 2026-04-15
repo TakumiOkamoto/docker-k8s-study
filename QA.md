@@ -148,7 +148,9 @@ This file is the repository-wide entrypoint for learning questions and answers.
 
 ## Kubernetes
 
-- No Q&A yet
+- Q. What is the difference between `k8s` and `k3s`? Should I know it as a support engineer?
+  - A. `k8s` is the upstream standard. `k3s` is a lightweight, fully compliant K8s distribution optimized by removing cloud-specific plugins. Knowing that "K8s is an API standard with many implementations (k3s, EKS, kind, etc.)" is crucial context for customer support and troubleshooting
+  - Details: To be covered in `notes/` and Day 5 learning
 
 ## Update Rule
 
