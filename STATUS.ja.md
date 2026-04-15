@@ -5,9 +5,10 @@
 Docker 演習の進行：
 - 演習 01: `hello-world` で基本を確認（完了）
 - 演習 02: `nginx:alpine` で bind mount とポート公開を学習（完了）
-- 演習 03: Dockerfile を書いて image を build する段階（開始）
+- 演習 03: Dockerfile を書いて image を build する段階（完了）
+- 演習 04: Docker Compose で複数コンテナを管理する（開始）
 
-現在は 03 を進めるフェーズ。次は build と bind mount の差分を手で確認し、Kubernetes 基礎へ接続する。
+現在は 04 を進めるフェーズ。Docker Compose を使ったインフラのコード化（IaC）の基礎を学ぶ。
 
 ## 完了したこと
 
@@ -18,11 +19,13 @@ Docker 演習の進行：
   - ポート公開 (`-p 8080:80`)
   - ファイル mount (`-v`)
   - ホスト、コンテナ、ポート転送の 3 層分離
-- **`exercises/docker/03-custom-nginx/`** - 🆕 Dockerfile を書いて build
+- `exercises/docker/03-custom-nginx/` - Dockerfile を書いて build
   - Dockerfile の作成と要素
   - `docker build` による image 生成
   - build vs bind mount の使い分け
   - image と container の関係
+- **`exercises/docker/04-compose/`** - 🆕 Docker Compose の基礎
+  - `compose.yaml` の構造と意味
 
 ### リファレンス・ドキュメント
 
@@ -31,16 +34,13 @@ Docker 演習の進行：
   - 各行の役割、daemon off の必要性
   - image サイズ、カスタム Dockerfile テンプレート
 
-## 次にやること（Exercise 03）
+## 次にやること（Exercise 04）
 
-1. `exercises/docker/03-custom-nginx` で `docker build -t my-custom-nginx:latest .` を実行する
-2. `docker run --rm -p 8080:80 my-custom-nginx:latest` を実行する
-3. `localhost:8080` の表示を確認する
-4. 演習 02 と比較して「bind mount は即時反映 / build は再ビルド必要」を言葉で説明する
-5. 必要なら `docker image inspect my-custom-nginx:latest` で image の状態を確認する
+1. `exercises/docker/04-compose` ディレクトリを作成する
+2. はじめての `compose.yaml` を作成する
+3. `docker compose up` での起動を体験し、なぜこれが便利なのか理解する
 
-## 完了条件（Exercise 03 開始時点）
+## 完了条件（Exercise 04 開始時点）
 
-- build した image からページが配信されることを確認済み
-- 演習 02 と 03 の違いを 3 行で説明できる
-- 追加の疑問は `03-custom-nginx` README と `QA.ja.md` に残す
+- `docker run` と `docker compose` の違い・関係性を理解できる
+- 追加の疑問は `04-compose` README と `QA.ja.md` に残す
