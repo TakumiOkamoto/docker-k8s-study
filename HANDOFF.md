@@ -33,28 +33,25 @@ This is a private study repository for learning Docker and Kubernetes in a way t
 - Study repository created
 - GitHub remote configured
 - Docker Desktop confirmed working
-- `docker info` run successfully
-- `docker run hello-world` succeeded
+- Client-server architecture confirmed via `docker info` connection error troubleshooting
 - `kubectl` and `kind` available
 - Dockerfile exercise `01-hello` completed
-- Q&A about Alpine meaning and pronunciation recorded
-- README, notes, and exercise docs updated for a support-engineer perspective
+- Docker bind mount exercise `02-nginx` completed
+- Dockerfile build exercise `03-custom-nginx` completed
+- Docker Compose basics exercise `04-compose` completed
+- Advanced concepts like `k8s` vs `k3s` and DinD (Docker in Docker) documented in Q&A
 
 ## Current Stage
 
-The next step is `exercises/docker/02-nginx`. The focus is:
+The Docker fundamentals and Docker Compose phases are complete. The next phase is "Kubernetes Fundamentals (Day 5)".
 
-- showing a host file inside a container
-- understanding host and container port mapping
-- learning which layer to inspect when a problem occurs
+The next step is reading `notes/10-k8s-basics.md` and using `kind` to build a local cluster. The focus is:
 
-To make resuming easier, `exercises/docker/02-nginx/README.md` now includes:
+- Understanding why Docker Compose has limits and why Kubernetes is necessary
+- Grasping how `kind` (Kubernetes in Docker) uses DinD technology to simulate a cluster
+- Recognizing the differences between Kubernetes distributions (`k8s`, `k3s`, `kind`, etc.)
 
-- pre-run checks
-- post-run verification
-- a layer-by-layer troubleshooting order
-
-This sandbox cannot access the Docker socket, so live container verification is still pending here. The next session should resume by running the `02-nginx` `docker run` command on the user's machine and checking `localhost:8080`.
+The next session should resume with the user reading `notes/10-k8s-basics.md` or starting the `kind` cluster setup. There are no blocking errors.
 
 ## Files To Read First
 

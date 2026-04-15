@@ -33,28 +33,25 @@
 - 学習用 repository を作成済み
 - GitHub remote を設定済み
 - Docker Desktop は起動確認済み
-- `docker info` 実行済み
-- `docker run hello-world` 成功済み
+- `docker info` 実行によるクライアント・サーバーの疎通確認
 - `kubectl` / `kind` 利用可能
 - Dockerfile 最小演習 `01-hello` 完了
-- `alpine` の意味と発音に関する Q&A を記録済み
-- README / notes / exercises を、サポート視点で理解できる説明に更新済み
+- Docker bind mount 演習 `02-nginx` 完了
+- Dockerfile の build 演習 `03-custom-nginx` 完了
+- Docker Compose の基礎演習 `04-compose` 完了
+- `k8s` vs `k3s` の違いや、DinD (Docker in Docker) などの高度なアーキテクチャ概念を Q&A に記録済み
 
 ## 現在地
 
-次にやることは `exercises/docker/02-nginx`。ここで学ぶべきことは以下。
+Docker 基礎フェーズおよび Compose フェーズが完了し、次は「Kubernetes 基礎（Day 5）」への移行フェーズです。
 
-- ホスト側ファイルをコンテナに見せる仕組み
-- ホストポートとコンテナポートの対応
-- 問題発生時にホスト、コンテナ、ポート公開のどこを見るべきか
+次にやることは `notes/10-k8s-basics.ja.md` の読み込みと、ローカルクラスタツール `kind` を用いた環境構築です。ここで学ぶべきことは以下。
 
-再開しやすいように、`exercises/docker/02-nginx/README.ja.md` には以下を追加済み。
+- なぜ Docker Compose では限界があり、Kubernetes が必要なのか
+- `kind` (Kubernetes in Docker) がどのように DinD 技術を使ってクラスタを再現しているか
+- Kubernetes ディストリビューション（`k8s`, `k3s`, `kind` など）の違い
 
-- 実行前チェック
-- 実行後の確認
-- レイヤー別の切り分け順
-
-この sandbox では Docker ソケット権限の都合で live 実行確認はできないため、次セッションでも基本方針は同じ。利用者の手元で `02-nginx` の `docker run` を実行し、`localhost:8080` を確認するところから再開する。
+次セッションは、利用者が `notes/10-k8s-basics.ja.md` に目を通すところ、もしくは `kind` クラスタの立ち上げ（Day 5相当）を行うところから再開してください。現状ブロックしているエラーはありません。
 
 ## まず見るファイル
 
