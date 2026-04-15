@@ -126,6 +126,12 @@
   - A. `docker version` で `Client` と `Server` の両方が出力されるか見るか、`docker info` で詳細情報が出力されるかで確認するのが確実
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+### `04-compose`
+
+- Q. `docker compose up` は compose ファイルがあるディレクトリ以外からでも指定して実行できる？ その場合 volumes の相対パスはどうなる？
+  - A. `-f` オプションで別ディレクトリから指定可能。volumes の相対パスは「コマンド実行場所」ではなく「compose ファイルのあるディレクトリ」を基準に解釈されるため、どこから実行しても安全に再現できる
+  - 詳細: `exercises/docker/04-compose/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

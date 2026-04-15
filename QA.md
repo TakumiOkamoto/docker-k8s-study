@@ -126,6 +126,12 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. Run `docker version` to see if both `Client` and `Server` sections appear, or run `docker info` to check for detailed output
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+### `04-compose`
+
+- Q. Can `docker compose up` be run from outside the directory containing the compose file? How are relative paths in volumes resolved then?
+  - A. Yes, using the `-f` option. Relative paths in volumes are resolved relative to the directory containing the compose file, not the command execution directory, making it safe and reproducible
+  - Details: `exercises/docker/04-compose/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design
