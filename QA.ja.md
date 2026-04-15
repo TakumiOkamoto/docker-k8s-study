@@ -118,6 +118,10 @@
   - A. 制御できる。`COPY --chown` で所有権、`RUN chmod`/`RUN chown` で権限を設定可能。ホスト側の権限は自動では保持されない
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. `ERROR: failed to connect to the docker API at unix:///Users/.../docker.sock` と言われる場合は？
+  - A. Docker デーモン（サーバー）が起動していない。Docker Desktop 等を起動して「クライアント」からの接続を受け付けられる状態にする
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み

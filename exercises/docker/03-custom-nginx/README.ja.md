@@ -603,3 +603,12 @@ RUN chmod 644 /usr/share/nginx/html/index.html
 - `RUN chmod / RUN chown` は追加 layer を作る
 - ホスト側のパーミッション情報は保持されない
 - コンテナ内では独立した権限スキーム（UID/GID の数値）を使う
+
+### Q. `ERROR: failed to connect to the docker API at unix:///Users/.../docker.sock` と言われる場合は？
+
+A. Docker デーモン（サーバー側）が起動していないため、`docker` コマンド（クライアント側）が接続できていません。
+
+Docker はクライアント・サーバー型のアーキテクチャを採用しています。
+手元のターミナルで叩いている `docker` コマンドは単なる「クライアント」であり、実際のビルドやコンテナの実行は背後で動いている「デーモン（サーバー）」が行います。それらが通信するための経路が `docker.sock`（ソケットファイル）です。
+
+このエラーが出た場合は、Docker Desktop（または OrbStack 等の代替プロセス）を起動し、ステータスが "Running" になるのを待ってから再度コマンドを実行してください。

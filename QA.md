@@ -118,6 +118,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. You can control permissions via `COPY --chown` (for ownership) or `RUN chmod`/`RUN chown` (for permissions); host permissions are not automatically preserved
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. What should I do if I see `ERROR: failed to connect to the docker API at unix:///Users/.../docker.sock`?
+  - A. The Docker daemon (server) is not running. Start Docker Desktop so the "client" command can connect to it
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

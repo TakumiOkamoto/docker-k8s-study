@@ -599,3 +599,12 @@ docker run --rm -p 8080:80 <username>/my-custom-nginx:latest
 The identical configuration is reproduced on any machine. This is Docker's key strength: `docker build` + `docker push/pull` enables environment sharing.
 
 This exercise doesn't require going this far, but image sharing is how Docker is typically used in teams.
+
+### Q. What should I do if I see `ERROR: failed to connect to the docker API at unix:///Users/.../docker.sock`?
+
+A. The Docker daemon (server side) is not running, so the `docker` command (client side) cannot connect to it.
+
+Docker uses a client-server architecture. 
+The `docker` command you invoke in your terminal is merely a "client", while the actual building and running of containers is handled by the "daemon (server)" running in the background. They communicate via `docker.sock` (a socket file).
+
+If you encounter this error, start Docker Desktop (or your alternative such as OrbStack), wait for its status to become "Running", and then run the command again.
