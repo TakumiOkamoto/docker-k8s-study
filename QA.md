@@ -122,6 +122,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. The Docker daemon (server) is not running. Start Docker Desktop so the "client" command can connect to it
   - Details: `exercises/docker/03-custom-nginx/README.md`
 
+- Q. Is there a way to check the status of the Docker daemon from the terminal?
+  - A. Run `docker version` to see if both `Client` and `Server` sections appear, or run `docker info` to check for detailed output
+  - Details: `exercises/docker/03-custom-nginx/README.md`
+
 ## Docker References
 
 - nginx:alpine Dockerfile structure and design

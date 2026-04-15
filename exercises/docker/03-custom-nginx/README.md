@@ -608,3 +608,19 @@ Docker uses a client-server architecture.
 The `docker` command you invoke in your terminal is merely a "client", while the actual building and running of containers is handled by the "daemon (server)" running in the background. They communicate via `docker.sock` (a socket file).
 
 If you encounter this error, start Docker Desktop (or your alternative such as OrbStack), wait for its status to become "Running", and then run the command again.
+
+### Q. Is there a way to check the status of the Docker daemon from the terminal?
+
+A. Yes. On macOS (with Docker Desktop or similar), the most reliable way is to **test communication from the Docker client**, rather than using OS-level process managers (like `systemctl`).
+
+The two most common commands for this are:
+
+1. **`docker version` (Recommended)**
+   - When running: Shows both `Client:` and `Server:` version details.
+   - When stopped: Shows `Client:` details, but shows an `error during connect` for the `Server:` section. This clearly demonstrates the "client-server model".
+
+2. **`docker info`**
+   - When running: Outputs detailed daemon status, including container counts, image counts, and storage paths.
+   - When stopped: Fails with a connection error.
+
+> Note: If you are running Docker natively on Linux (like Ubuntu), the OS manages the daemon directly, so you can also use `systemctl status docker` to check the process status.

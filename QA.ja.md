@@ -122,6 +122,10 @@
   - A. Docker デーモン（サーバー）が起動していない。Docker Desktop 等を起動して「クライアント」からの接続を受け付けられる状態にする
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. ターミナル上で Docker デーモンが起動しているか状態を確認するには？
+  - A. `docker version` で `Client` と `Server` の両方が出力されるか見るか、`docker info` で詳細情報が出力されるかで確認するのが確実
+  - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
+
 ## Docker References
 
 - nginx:alpine の Dockerfile 構成と仕組み
