@@ -40,6 +40,8 @@ Current phase is transitioning to Kubernetes fundamentals (Day 5). Connecting th
 1. Read `notes/10-k8s-basics.md` to grasp the big picture and terminology of Kubernetes
 2. Understand the differences between K8s distributions like k8s, k3s, and kind
 3. Verify the installation status and versions of `kubectl` and `kind`
+4. Create local cluster with `kind create cluster --name study` (completed)
+5. Apply first deployment: `kubectl apply -f exercises/k8s/01-deployment/deployment.yaml`
 
 ## Completion Criteria (at Kubernetes Fundamentals start)
 
