@@ -35,15 +35,29 @@ Current phase is transitioning to Kubernetes fundamentals (Day 5). Connecting th
   - each line's purpose, daemon off necessity
   - image sizes, custom Dockerfile template
 
-## Next Actions (Kubernetes Fundamentals)
+## Completed (Kubernetes Fundamentals Phase)
 
-1. Read `notes/10-k8s-basics.md` to grasp the big picture and terminology of Kubernetes
-2. Understand the differences between K8s distributions like k8s, k3s, and kind
-3. Verify the installation status and versions of `kubectl` and `kind`
-4. Create local cluster with `kind create cluster --name study` (completed)
-5. Apply first deployment: `kubectl apply -f exercises/k8s/01-deployment/deployment.yaml`
+- Read `notes/10-k8s-basics.md` - grasped terminology and mental model
+- Understood K8s distributions (`k8s`, `k3s`, `kind`)
+- Created local cluster with `kind create cluster --name study`
+- Applied first deployment: `kubectl apply -f exercises/k8s/01-deployment/deployment.yaml`
+- Verified Pod creation and Service configuration
+- Explored logging architecture: `kubectl logs`, `kubectl describe pod`
+- Understood three log layers: app logs, Pod events, node OS logs
+- Learned kubeconfig structure: cluster, user, context
 
-## Completion Criteria (at Kubernetes Fundamentals start)
+## Current Understanding
 
-- Understand the problem K8s solves (why Docker Compose isn't always enough)
-- Can stand up a local cluster using `kind`
+- Deployment declaratively manages Pod replicas
+- Service provides stable ClusterIP for Pod groups
+- Pod names are generated with hash suffixes (ReplicaSet ID + random)
+- Logs come from container stdout/stderr, not files
+- Pod events show lifecycle and status changes
+
+## Next Actions (Continued Kubernetes Learning)
+
+1. Explore Pod deletion and Deployment recreation behavior
+2. Test Service networking from another Pod
+3. Scale Deployment replicas and observe behavior
+4. Create multiple Deployments and Services to understand routing
+5. Move to multi-namespace exercises

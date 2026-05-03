@@ -98,6 +98,18 @@
   - A. `-f` は Dockerfile の場所指定のみで、最後の build context 引数（例: `.`）が必須。`docker build [OPTIONS] <CONTEXT>` の形にする必要がある
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`
 
+- Q. Pod 名の末尾のハッシュ部分（例: `hello-nginx-d54d8664b-6dhqx` の `-d54d8664b-6dhqx`）はどこから？
+  - A. `d54d8664b` は ReplicaSet が自動生成する ID、`6dhqx` は Pod ごとのランダムサフィックス。`kubectl get pods` の出力で full name が確認できる
+  - 詳細: `exercises/k8s/01-deployment/README.ja.md`
+
+- Q. `kubectl logs`, `kubectl describe pod`, `journalctl` の違いは？
+  - A. ログ 3 層：(1) `kubectl logs` = コンテナの stdout/stderr、(2) `kubectl describe pod` = Pod のライフサイクルイベント、(3) `journalctl` = ノードの OS レベル kubelet/containerd ログ。最初の 2 つでサポートの 99% が解決する
+  - 詳細: `exercises/k8s/01-deployment/README.ja.md`
+
+- Q. ログは実際のところどこに保存されているのか？ `kubectl logs` はノード上のファイルから読むのか？
+  - A. Kubernetes はコンテナの stdout/stderr をストリームとしてキャプチャし、ファイルではない形で保持。ノード上の `/var/log/pods/` に一時保存されるが、これは実装詳細。`kubectl logs` は API を経由して抽象化している
+  - 詳細: `exercises/k8s/01-deployment/README.ja.md`
+
 - Q. `COPY index.html ...` で `"/index.html": not found` になるのはなぜ？
   - A. build context に `index.html` が含まれていないため。`-f` で Dockerfile を読めても、`COPY` は context 内しか参照できない
   - 詳細: `exercises/docker/03-custom-nginx/README.ja.md`

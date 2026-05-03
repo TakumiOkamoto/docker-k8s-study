@@ -35,13 +35,29 @@ Docker 演習の進行：
   - 各行の役割、daemon off の必要性
   - image サイズ、カスタム Dockerfile テンプレート
 
-## 次にやること（Kubernetes 基礎）
+## 完了した（Kubernetes 基礎フェーズ）
 
-1. `notes/10-k8s-basics.ja.md` を読み、Kubernetes の全体像と用語を把握する
-2. k8s, k3s, kind などの「K8sディストリビューション」の違いを理解する
-3. `kubectl` と `kind` のバージョンやインストール状態を確認する
+- `notes/10-k8s-basics.ja.md` を読み、用語と心構えを把握
+- K8s ディストリビューション（`k8s`, `k3s`, `kind`）の違いを理解
+- `kind create cluster --name study` でローカルクラスタを構築
+- `exercises/k8s/01-deployment/deployment.yaml` を apply
+- Pod 作成と Service 設定を確認
+- ログ体系を探索: `kubectl logs`, `kubectl describe pod`
+- 3層のログ（app logs / Pod event / node OS log）を理解
+- kubeconfig 構造（cluster, user, context）を学習
 
-## 完了条件（Kubernetes 基礎開始時点）
+## 現在の理解度
 
-- K8sが解決したい課題（なぜ Docker Compose だけではダメなのか）を理解できる
-- `kind` を使ってローカルクラスタを構築できる
+- Deployment は Pod 複製数を宣言的に管理する
+- Service は Pod グループへの stable ClusterIP を提供する
+- Pod 名はハッシュサフィックス（ReplicaSet ID + ランダム）で自動生成
+- ログはコンテナの stdout/stderr であり、ファイルではない
+- Pod イベントはライフサイクルと状態変化を表示する
+
+## 次にやること（Kubernetes 学習継続）
+
+1. Pod 削除と Deployment による自動再作成を実験
+2. 別 Pod からの Service ネットワーキングをテスト
+3. Deployment レプリカをスケール、動作を観察
+4. 複数 Deployment + Service でルーティングを学習
+5. 複数 namespace 演習へ進む
