@@ -164,6 +164,10 @@
   - A. `k8s` は標準（源流）。`k3s` はクラウド固有のコード等を削ぎ落とし、1つのバイナリにまとめた軽量で完全互換な K8s ディストリビューション。「K8s は規格（API）であり、k3s, EKS, kind など多様な実装がある」と知っておくのは顧客サポート・切り分けの前提として非常に重要
   - 詳細: 今後 `notes/` や Day 5 の学習にて解説予定
 
+- Q. `kind` が kubeconfig に cluster, user, context を追加するってどういう意味？
+  - A. kubeconfig (~/.kube/config) は Kubernetes の接続設定を保存。`cluster` は API エンドポイント、`user` は認証、`context` はそれらを組み合わせた接続設定。
+  - 詳細: `notes/10-k8s-basics.ja.md`
+
 ## 更新ルール
 
 - 質問が出たら、関連する Markdown に詳細な Q&A を追記する

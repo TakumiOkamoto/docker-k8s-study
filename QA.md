@@ -164,6 +164,10 @@ This file is the repository-wide entrypoint for learning questions and answers.
   - A. `k8s` is the upstream standard. `k3s` is a lightweight, fully compliant K8s distribution optimized by removing cloud-specific plugins. Knowing that "K8s is an API standard with many implementations (k3s, EKS, kind, etc.)" is crucial context for customer support and troubleshooting
   - Details: To be covered in `notes/` and Day 5 learning
 
+- Q. What does it mean that `kind` adds cluster, user, context to kubeconfig?
+  - A. kubeconfig (~/.kube/config) stores Kubernetes connection settings. `cluster` defines API endpoint, `user` defines auth, `context` combines them for connection.
+  - Details: `notes/10-k8s-basics.md`
+
 ## Update Rule
 
 - When a new question appears, add detailed Q&A to the relevant Markdown
