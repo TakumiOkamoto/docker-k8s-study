@@ -43,12 +43,13 @@ The current stage is:
 
 1. Docker Desktop is working
 2. Basic Docker image build is confirmed
-3. Next step is nginx with port publishing and bind mounts
-4. Then move to a local Kubernetes cluster with `kind`
+3. Docker Compose and multi-container orchestration are understood
+4. Local Kubernetes cluster using `kind` is available
+5. Next: deepen Kubernetes fundamentals and study distributions such as `k8s`, `k3s`, and `kind`
 
 Latest journal:
 
-- `journal/2026-04-13.md`
+- `journal/2026-05-04.md`
 
 ## Commit Policy
 
